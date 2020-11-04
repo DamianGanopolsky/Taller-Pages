@@ -10,15 +10,15 @@ public:
 	 Socket(int FileDescriptor):fd(FileDescriptor){
 	};
 
-	 void socket_connect(const char *host, const char *service);
+	 void Connect(const char *host, const char *service);
 
-	 void socket_bind_and_listen(const char *host,const char *service);
+	 void Bind_And_Listen(const char *host,const char *service);
 
-	 ssize_t socket_send( unsigned char *buffer, size_t length);
+	 ssize_t Send(char *buffer, size_t length);
 
-	 ssize_t socket_receive(unsigned char *buffer, size_t length);
+	 ssize_t Receive(char *buffer, size_t length);
 
-	 Socket socket_accept();
+	 Socket Accept();
 
 	~Socket();
 };

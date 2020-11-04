@@ -11,10 +11,10 @@
 
 
 
-void Socket::socket_connect(const char *host, const char *service){
+void Socket::Connect(const char *host, const char *service){
     struct addrinfo hints;
     struct addrinfo *result, *rp;
-    int codigo_getaddrinfo,socketfd;
+    int codigo_getaddrinfo,socketfd=-1;
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
@@ -42,7 +42,7 @@ void Socket::socket_connect(const char *host, const char *service){
 }
 
 
-void Socket::socket_bind_and_listen(const char *host,const char *service){
+void Socket::Bind_And_Listen(const char *host,const char *service){
 
     int fdscriptor = -1;
     struct addrinfo hints;
@@ -63,7 +63,7 @@ void Socket::socket_bind_and_listen(const char *host,const char *service){
             continue;
         if (bind(fd, rp->ai_addr, rp->ai_addrlen) == 0)
             break;                  /* Success */
-        close(fd);
+        close(fdscriptor);
     }
     if (rp == NULL) {               /* No address succeeded */
         fprintf(stderr, "No se pudo hacer el bind\n");
@@ -75,7 +75,7 @@ void Socket::socket_bind_and_listen(const char *host,const char *service){
 }
 
 
-Socket Socket::socket_accept(){
+Socket Socket::Accept(){
     char addressBuf[INET_ADDRSTRLEN];
     struct sockaddr_in address;
     socklen_t addressLength = (socklen_t) sizeof(address);
@@ -87,9 +87,9 @@ Socket Socket::socket_accept(){
     return Socket(newFd);
 }
 
-ssize_t Socket::socket_send( unsigned char *buffer, size_t length){
+ssize_t Socket::Send( char* buffer, size_t length){
 	ssize_t longitud_restante=length;
-	unsigned char* puntero_a_caracter_actual=buffer;
+	char* puntero_a_caracter_actual=buffer;
 
     while (longitud_restante>0){
     	ssize_t caracteres_enviados;
@@ -116,9 +116,9 @@ ssize_t Socket::socket_send( unsigned char *buffer, size_t length){
 }
 
 
-ssize_t Socket::socket_receive(unsigned char *buffer, size_t length){
+ssize_t Socket::Receive(char *buffer, size_t length){
 	ssize_t longitud_restante=length;
-	unsigned char* puntero_a_caracter_actual=buffer;
+	char* puntero_a_caracter_actual=buffer;
 
 	while (longitud_restante>0){
 		ssize_t caracteres_recibidos;
@@ -138,4 +138,9 @@ ssize_t Socket::socket_receive(unsigned char *buffer, size_t length){
 		}
 	}
 	return length-longitud_restante;
+}
+
+Socket::~Socket(){
+	shutdown(fd,SHUT_RDWR);
+	close(fd);
 }

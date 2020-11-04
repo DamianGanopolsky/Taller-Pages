@@ -17,7 +17,7 @@ extension = cpp
 # toma todos los archivos con la extensiÃ³n mencionada. Para especificar hay que
 # descomentar la lÃ­nea (quitarle el '#' del principio).
 # NOTA: No poner cabeceras (.h).
-fuentes = client_main.cpp server_main.cpp Receptor_input.cpp
+fuentes = client_main.cpp server_main.cpp Receptor_input.cpp Socket.cpp Thread.cpp
 
 # Si usa funciones de math.h, descomentar (quitar el '#' a) la siguiente lÃ­nea.
 #math = si
@@ -42,7 +42,7 @@ verbose = si
 CFLAGS += -Wall -Werror -pedantic -pedantic-errors
 
 # Para optimizar el binario resultante lo mejor posible
-CFLAGS += -O3
+CFLAGS += -O1
 
 # Para valgrind o debug
 CFLAGS += -ggdb -DDEBUG -fno-inline

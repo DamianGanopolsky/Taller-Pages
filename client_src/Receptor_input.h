@@ -5,11 +5,11 @@
 
 class Receptor_input{
 private:
-	std::string ip;
-	std::string port;
+	const char* ip;
+	const char* port;
 
 public:
-	 Receptor_input(std::string ip_argv,std::string port_argv):\
+	 Receptor_input(const char* ip_argv,const char* port_argv):\
 	 ip(ip_argv),port(port_argv){
 	};
 	 void recibir();
