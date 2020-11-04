@@ -1,0 +1,1 @@
+./client <ip/hostname> <port/service> < archivo.txt
