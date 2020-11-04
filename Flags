@@ -1,1 +1,2 @@
-./client <ip/hostname> <port/service> < archivo.txt
+./client 127.0.0.1 8080
+./server 8080 archivo_raiz
