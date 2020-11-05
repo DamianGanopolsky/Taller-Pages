@@ -61,7 +61,7 @@ void Socket::Bind_And_Listen(const char *host,const char *service){
     	fdscriptor = socket(rp->ai_family,rp->ai_socktype,rp->ai_protocol);
         if (fdscriptor == -1)
             continue;
-        if (bind(fd, rp->ai_addr, rp->ai_addrlen) == 0)
+        if (bind(fdscriptor, rp->ai_addr, rp->ai_addrlen) == 0)
             break;                  /* Success */
         close(fdscriptor);
     }
