@@ -54,11 +54,12 @@ void Socket::Bind_And_Listen(const char *host,const char *service){
     //Obtengo la lista de resultados para el servicio
     getaddrinfo(NULL, service, &hints, &result);
 	int val_opt=1;
-	setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&val_opt,sizeof(val_opt));
+
 	//Itero la lista, si no puedo bindear sigo intentando
 	//con los siguientes resultados
     for (rp = result; rp != NULL; rp = rp->ai_next) {
     	fdscriptor = socket(rp->ai_family,rp->ai_socktype,rp->ai_protocol);
+    	setsockopt(fdscriptor,SOL_SOCKET,SO_REUSEADDR,&val_opt,sizeof(val_opt));
         if (fdscriptor == -1)
             continue;
         if (bind(fdscriptor, rp->ai_addr, rp->ai_addrlen) == 0)

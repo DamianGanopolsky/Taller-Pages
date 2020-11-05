@@ -1,2 +1,2 @@
 ./client 127.0.0.1 8080
-./server 59968 archivo_raiz
+./server 8080 archivo_raiz
