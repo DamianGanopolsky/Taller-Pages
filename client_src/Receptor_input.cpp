@@ -3,11 +3,11 @@
 #include <iostream>
 #include "../common_src/Socket.h"
 #include <sstream>
-#include "../common_src/Buffer.h"
+
 #define TAMANIO_BUFFER 5
 
 void Receptor_input::recibir(){
-	Buffer buf(TAMANIO_BUFFER);
+
 	//std::stringbuf buffer;
 	std::string input_line;
 	Socket socket(-1);

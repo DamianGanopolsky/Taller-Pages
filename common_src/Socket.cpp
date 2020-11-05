@@ -142,6 +142,9 @@ ssize_t Socket::Receive(char *buffer, size_t length){
 }
 
 Socket::~Socket(){
-	shutdown(fd,SHUT_RDWR);
-	close(fd);
+	if(fd!=-1){
+		shutdown(fd,SHUT_RDWR);
+		close(fd);
+	}
+
 }
