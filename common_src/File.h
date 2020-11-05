@@ -22,6 +22,10 @@ public:
 	//Vuelve a la primera linea del archivo
 	void rewind();
 
+	int longitud_archivo();
+
+	void Asign(std::string &cuerpo);
+
 	//Devuelve true si se encuentra en el fin de archivo, y devuelve false en
 	//el caso de que no se encuentre en el final
 	bool end() const;

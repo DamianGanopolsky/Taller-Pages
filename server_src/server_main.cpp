@@ -1,22 +1,27 @@
 #include <iostream>
 #include "../common_src/Socket.h"
-#include "../common_src/File.h"
-#include "../common_src/Parser.h"
+#include "Server_Manager.h"
+
 
 int main(int argc,char* argv[]){
 
 	for(int i=0;i<argc;i++){
 		std::cout << "argv es" << argv[i] << std::endl;
 	}
-
+	Server_Manager server;
+	server.Guardar_Root(argv[2]);
+/*
 	File archivo(argv[2]);
 	Parser parser;
 	while(!archivo.end()){
 		std::string linea = archivo.getLine();
 		std::string cuerpo_obtenido;
 		cuerpo_obtenido=parser.Obtener_linea_cuerpo(linea);
-		std::cout << cuerpo_obtenido << std::endl;
-	}
+		if(!cuerpo_obtenido.empty()){
+			std::cout << cuerpo_obtenido << std::endl;
+		}
+
+	}*/
 
 
 /*	Socket socket(-1);
