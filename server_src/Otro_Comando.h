@@ -1,0 +1,21 @@
+#ifndef SERVER_SRC_OTRO_COMANDO_H_
+#define SERVER_SRC_OTRO_COMANDO_H_
+
+#include "Comando.h"
+
+class Otro_Comando: public Comando{
+private:
+	std::tuple<std::string,std::string,std::string> datos_petitorio;
+
+public:
+	Otro_Comando(std::tuple<std::string,std::string,std::string> petitorio)\
+	: datos_petitorio(petitorio){
+	}
+
+	std::string Obtener_Respuesta();
+
+	~Otro_Comando();
+};
+
+
+#endif /* SERVER_SRC_OTRO_COMANDO_H_ */
