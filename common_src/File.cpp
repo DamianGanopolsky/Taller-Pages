@@ -19,12 +19,6 @@ void File::Asign(std::string &cuerpo){
 		            std::istreambuf_iterator<char>());
 }
 
-
-void File::rewind(){
-	inputFile->clear();
-	inputFile->seekg(0);
-}
-
 int File::longitud_archivo(){
 	inputFile->seekg (0, inputFile->end);
 	int length = inputFile->tellg();

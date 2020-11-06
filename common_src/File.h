@@ -19,9 +19,6 @@ public:
 	//linea en la lectura del archivo.
 	std::string getLine();
 
-	//Vuelve a la primera linea del archivo
-	void rewind();
-
 	int longitud_archivo();
 
 	void Asign(std::string &cuerpo);

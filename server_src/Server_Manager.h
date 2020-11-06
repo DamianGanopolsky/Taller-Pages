@@ -10,6 +10,8 @@ private:
 public:
 	void Guardar_Root(std::string FileName);
 
+	void Receive_connections(const char* Port);
+
 };
 
 
