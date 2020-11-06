@@ -4,3 +4,14 @@ Accept: */*
 Accept-Encoding: identity
 Host: localhost:8088
 Connection: Keep-Alive
+
+
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<h1>Mi recurso test</h1>
+	</body>
+</html>
+
+GET /put-something HTTP/1.1

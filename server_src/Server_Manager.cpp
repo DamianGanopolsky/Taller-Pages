@@ -11,7 +11,6 @@ void Server_Manager::Guardar_Root(std::string FileName){
 	cuerpo.reserve(longitud_archivo);
 	archivo.Asign(cuerpo);
 	hash_recursos["/"]=cuerpo;
-	std::cout << cuerpo << std::endl;
 }
 
 
@@ -26,11 +25,12 @@ void Server_Manager::Receive_connections(const char* Port){
 			input.append(buff);
 			memset(buff,0,sizeof(buff));
 		}
-		std::cout << input << std::endl;
+		//std::cout << input << std::endl;
 }
 
 void Server_Manager::Response(){
 	Parser parser(input);
+	parser.Parsear_Archivo();
 }
 
 

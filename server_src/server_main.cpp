@@ -5,9 +5,6 @@
 
 int main(int argc,char* argv[]){
 
-	for(int i=0;i<argc;i++){
-		std::cout << "argv es" << argv[i] << std::endl;
-	}
 	Server_Manager server;
 	server.Guardar_Root(argv[2]);
 	server.Receive_connections(argv[1]);
