@@ -3,6 +3,7 @@
 #include "../common_src/Socket.h"
 #include "Parser.h"
 #include <cstring>
+#include <tuple>
 
 void Server_Manager::Guardar_Root(std::string FileName){
 	File archivo(FileName);
@@ -25,12 +26,12 @@ void Server_Manager::Receive_connections(const char* Port){
 			input.append(buff);
 			memset(buff,0,sizeof(buff));
 		}
-		//std::cout << input << std::endl;
 }
 
 void Server_Manager::Response(){
 	Parser parser(input);
-	parser.Parsear_Archivo();
+	auto datos_petitorio=parser.Parsear_Archivo();
+
 }
 
 

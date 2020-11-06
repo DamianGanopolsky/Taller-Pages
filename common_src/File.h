@@ -9,6 +9,9 @@
 class File{
 private:
 	std::ifstream *inputFile;
+	//Lo marco como no copiable a File
+	File(const File &other) = delete;
+	File& operator=(const File &other) = delete;
 
 public:
 	explicit File(const std::string &file_name){

@@ -8,12 +8,9 @@
 void Obtener_Key_Recurso(std::string& linea,std::string& recurso){
 	std::string subline_res=linea.substr(linea.find('/'));
 	if(subline_res.at(1)==' '){
-		std::cout << "Recurso root" << std::endl;
 		recurso="/";
-	}
-	else{
+	}else{
 		recurso=subline_res.substr(1,subline_res.find(' '));
-		std::cout << recurso << std::endl;
 	}
 }
 
@@ -22,10 +19,10 @@ void Obtener_Cabecera(std::string& linea,std::string& tipo_petitorio,std::string
 		tipo_petitorio="GET";
 		Obtener_Key_Recurso(linea,resource);
 	}else if (linea.find("POST")!= std::string::npos){
-		tipo_petitorio="GET";
+		tipo_petitorio="PUT";
 		Obtener_Key_Recurso(linea,resource);
 	}else{
-
+		tipo_petitorio="OTROMETODO";
 	}
 }
 
@@ -40,7 +37,6 @@ std::tuple<std::string,std::string,std::string> Parser::Parsear_Archivo(){
 		if(tipo_de_linea==FIRST_LINE){
 			Obtener_Cabecera(line,tipo_de_petitorio,resource);
 			tipo_de_linea=HEADER_LINE;
-
 		}
 		if(line.empty()){
 			tipo_de_linea=BODY_LINE;
@@ -50,9 +46,10 @@ std::tuple<std::string,std::string,std::string> Parser::Parsear_Archivo(){
 			body.append(line);
 		}
 	}
-	std::cout << "Tipo" << tipo_de_petitorio << std::endl;
-	std::cout << "Recurso" << resource << std::endl;
-	std::cout << "Body" << body << std::endl;
+	//std::cout << "Tipo" << tipo_de_petitorio << std::endl;
+	//std::cout << "Recurso" << resource << std::endl;
+	//std::cout << "Body" << body << std::endl;
+	datos_petitorio=make_tuple(tipo_de_petitorio,resource,body);
 	return datos_petitorio;
 }
 
