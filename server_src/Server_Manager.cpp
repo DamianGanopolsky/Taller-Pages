@@ -25,6 +25,7 @@ void Server_Manager::Receive_connections(const char* Port){
 		Socket peer=socket.Accept();
 		ssize_t recibidos=1;
 		char buff[5];
+		hash_recursos["asd"]="dsa";
 		while(recibidos!=0){
 			recibidos=peer.Receive(buff,5);
 			input.append(buff);
@@ -36,8 +37,12 @@ void Server_Manager::Response(){
 	Parser parser(input);
 	auto datos_petitorio=parser.Parsear_Archivo();
 	std::string respuesta_al_cliente;
+	Comando_Get comando_get(datos_petitorio,hash_recursos);
+	respuesta_al_cliente=comando_get.Obtener_Respuesta();
+
+	/*
 	if(std::get<0>(datos_petitorio).compare("GET")==0){
-		Comando_Get comando_get(datos_petitorio);
+		Comando_Get comando_get(datos_petitorio,hash_recursos);
 		respuesta_al_cliente=comando_get.Obtener_Respuesta();
 	}
 	else if(std::get<0>(datos_petitorio).compare("POST")==0){
@@ -47,7 +52,7 @@ void Server_Manager::Response(){
 	else{
 		Otro_Comando otro_comando(datos_petitorio);
 		respuesta_al_cliente=otro_comando.Obtener_Respuesta();
-	}
+	}*/
 	std::cout << respuesta_al_cliente << std::endl;
 }
 
