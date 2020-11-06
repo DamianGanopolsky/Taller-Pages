@@ -13,12 +13,12 @@ void Receptor_input::recibir(){
 	socket.Connect(ip,port);
 	while (!std::cin.eof())
 	{
-		char buffer[5];
-		std::cin.read(buffer,5);
+		char buffer[TAMANIO_BUFFER];
+		std::cin.read(buffer,TAMANIO_BUFFER);
 		std::cout << buffer << std::endl;
-		socket.Send(buffer,5);
-
+		socket.Send(buffer,TAMANIO_BUFFER);
 	}
+	socket.Shutdown(1);
 }
 
 

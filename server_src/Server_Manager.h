@@ -7,10 +7,20 @@ class Server_Manager{
 private:
 
 	std::unordered_map<std::string, std::string> hash_recursos;
+
+	std::string input;
 public:
+	Server_Manager(){
+		input.clear();
+	}
+
 	void Guardar_Root(std::string FileName);
 
 	void Receive_connections(const char* Port);
+
+	void Response();
+
+	~Server_Manager();
 
 };
 

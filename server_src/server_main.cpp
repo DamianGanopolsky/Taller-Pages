@@ -11,6 +11,7 @@ int main(int argc,char* argv[]){
 	Server_Manager server;
 	server.Guardar_Root(argv[2]);
 	server.Receive_connections(argv[1]);
+	server.Response();
 
 
 /*	Socket socket(-1);
