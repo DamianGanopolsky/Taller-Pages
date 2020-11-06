@@ -2,6 +2,9 @@
 #include "../common_src/File.h"
 #include "../common_src/Socket.h"
 #include "Parser.h"
+#include "Comando_Post.h"
+#include "Comando_Get.h"
+#include "Comando.h"
 #include <cstring>
 #include <tuple>
 
@@ -31,7 +34,10 @@ void Server_Manager::Receive_connections(const char* Port){
 void Server_Manager::Response(){
 	Parser parser(input);
 	auto datos_petitorio=parser.Parsear_Archivo();
-
+	Comando_Post comando(datos_petitorio);
+	Comando_Get comando_get(datos_petitorio);
+	std::string respuesta_get=comando_get.Obtener_Respuesta();
+	std::string respuesta=comando.Obtener_Respuesta();
 }
 
 
