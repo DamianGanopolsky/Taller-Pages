@@ -42,7 +42,7 @@ void ThClient::process_command(std::string input_client){
 	this->send_answer(respuesta_al_cliente);
 }
 
-void ThClient::stop(){
+void ThClient::stop_ex(){
 	keep_talking=false;
 	Peer.Shutdown(2);
 	Peer.Close();

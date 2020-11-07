@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#include "Socket_exception.h"
 
 
 
@@ -81,8 +82,14 @@ Socket Socket::Accept(){
     struct sockaddr_in address;
     socklen_t addressLength = (socklen_t) sizeof(address);
 
+
+
     int newFd = accept(fd, \
     		(struct sockaddr *)&address,&addressLength);
+    if(newFd==-1){
+    	throw SocketException("Listener cerrado \n");
+    }
+
 
     inet_ntop(AF_INET, &(address.sin_addr), addressBuf, INET_ADDRSTRLEN);
     return Socket(newFd);

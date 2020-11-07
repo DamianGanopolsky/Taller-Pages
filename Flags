@@ -4,6 +4,6 @@
 VALGRIND:
 
 valgrind --track-origins=yes ./client 127.0.0.1 8080 < __client_1_stdin__
-valgrind --track-origins=yes ./server 8080 index.html
+valgrind --leak-check=full ./server 8080 index.html
 
 

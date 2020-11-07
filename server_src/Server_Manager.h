@@ -11,10 +11,11 @@ private:
 	std::string input;
 	//Socket listener;
 	const char* port_to_listen;
+	std::atomic<bool> keep_looping;
 
 public:
 
-	Server_Manager(const char* port):port_to_listen(port){
+	Server_Manager(const char* port):port_to_listen(port),keep_looping(true){
 
 	}
 
@@ -23,6 +24,8 @@ public:
 	void Guardar_Root(std::string FileName);
 
 	void Receive_connections(const char* Port);
+
+	void Stop_Looping();
 
 	~Server_Manager();
 

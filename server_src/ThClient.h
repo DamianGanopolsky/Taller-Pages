@@ -26,7 +26,7 @@ public:
 
 	void run();
 
-	void stop();
+	void stop_ex();
 };
 
 
