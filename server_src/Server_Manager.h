@@ -2,6 +2,7 @@
 #define SERVER_SRC_SERVER_MANAGER_H_
 #include <string>
 #include <unordered_map>
+#include <vector>
 #include "ThClient.h"
 
 class Server_Manager: public Thread{
@@ -9,13 +10,14 @@ private:
 
 	std::unordered_map<std::string, std::string> hash_recursos;
 	std::string input;
-	//Socket listener;
-	const char* port_to_listen;
+	//std::vector<ThClient*> clients;
+	Socket& socket;
+	//const char* port_to_listen;
 	std::atomic<bool> keep_looping;
 
 public:
 
-	Server_Manager(const char* port):port_to_listen(port),keep_looping(true){
+	Server_Manager(Socket& sock):socket(sock),keep_looping(true){
 
 	}
 

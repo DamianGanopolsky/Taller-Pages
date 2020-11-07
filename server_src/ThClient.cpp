@@ -19,6 +19,7 @@ void ThClient::send_answer(std::string server_answer){
 		iss.read(buffer,TAMANIO_BUFFER);
 		Peer.Send(buffer,iss.gcount());
 	}
+	Peer.Shutdown(2);
 }
 
 

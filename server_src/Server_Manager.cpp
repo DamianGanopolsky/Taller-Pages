@@ -14,6 +14,8 @@
 #define TAMANIO_BUFFER 64
 #define CLOSED_FD -1
 
+
+
 void Server_Manager::Guardar_Root(std::string FileName){
 	File archivo(FileName);
 	int longitud_archivo=archivo.longitud_archivo();
@@ -25,8 +27,8 @@ void Server_Manager::Guardar_Root(std::string FileName){
 
 
 void Server_Manager::run(){
-	Socket socket(CLOSED_FD);
-	socket.Bind_And_Listen(NULL,port_to_listen);
+//	Socket socket(CLOSED_FD);
+	//socket.Bind_And_Listen(NULL,port_to_listen);
 	std::vector<ThClient*> clients;
 	//Socket peer=socket.Accept();
 	//ThClient* client= new ThClient(std::move(peer),hash_recursos);
@@ -37,23 +39,21 @@ void Server_Manager::run(){
 	while(keep_looping){
 		try{
 			peer=socket.Accept();
-			total_clients++;
-			clients.reserve(1);
-			ThClient* client= new ThClient(std::move(peer),hash_recursos);
-			client->start();
-			std::cout << "asd3" << std::endl;
-			clients.push_back(client);
-			//client->join();
-			if(total_clients==1){
-				//socket.Close();
-				break;
-			}
 		}
 		catch(SocketException &except_msg){
 			throw except_msg;
 		}
-	}
-	for(int i=0;i<1;i++){
+			total_clients++;
+			clients.reserve(2);
+			ThClient* client= new ThClient(std::move(peer),hash_recursos);
+			client->start();
+			std::cout << "asd3" << std::endl;
+			clients.push_back(client);
+			//if(total_clients==2){
+				//break;
+			//}
+		}
+	for(int i=0;i<2;i++){
 		//clients[i]->stop_ex();
 		clients[i]->join();
 		delete clients[i];
@@ -62,10 +62,16 @@ void Server_Manager::run(){
 
 void Server_Manager::Stop_Looping(){
 	keep_looping=false;
-
+	socket.Shutdown(2);
+	socket.Close();
 }
 
 
 Server_Manager::~Server_Manager(){
-
+  /*for (std::vector<ThClient*>::iterator it = clients.begin();
+											 it != clients.end(); ) {
+	  (*it)->join();
+	  delete *it;
+	  it = clients.erase(it);
+  } */
 }
