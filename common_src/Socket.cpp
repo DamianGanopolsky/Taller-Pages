@@ -98,6 +98,7 @@ ssize_t Socket::Send( char* buffer, size_t length){
     			,longitud_restante,MSG_NOSIGNAL);
     	// Si caracteres enviados=-1, hubo un error en el intento de envio
         if (caracteres_enviados==-1){
+        	printf("Oh dear, something went wrong with read()! %s\n", strerror(errno));
         	if (errno==EACCES){
         		fprintf(stderr,\
         				"No esta permitida la escritura en el fd de destino\n");
@@ -105,6 +106,12 @@ ssize_t Socket::Send( char* buffer, size_t length){
         		fprintf(stderr,"El socket no esta ligado a una direccion \n");
         	}else if (errno==EBADF){
         		fprintf(stderr,"sockfd no es un file descriptor valido\n");
+        	}else if(errno==ENOTCONN){
+        		fprintf(stderr,"The socket is not connected\n");
+        	}else if(errno==EDESTADDRREQ){
+        		fprintf(stderr,"The socket is not connection-mode,\n");
+        	}else if(errno==ECONNRESET){
+        		fprintf(stderr,"Connection reset by peer,\n");
         	}else{
         		fprintf(stderr,"Error al enviar \n");
         	}

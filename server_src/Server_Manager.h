@@ -10,9 +10,6 @@ private:
 
 	std::string input;
 public:
-	Server_Manager(){
-		input.clear();
-	}
 
 	void Guardar_Root(std::string FileName);
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <sstream>      // std::stringbuf
+#include <sstream>
 #include <string>
 
 #include "Client_manager.h"

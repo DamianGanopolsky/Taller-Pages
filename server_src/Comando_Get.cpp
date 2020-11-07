@@ -5,7 +5,7 @@ std::string Comando_Get::Obtener_Respuesta(){
 
 	std::string respuesta;
 	if(std::get<1>(datos_petitorio).compare("/")==0){
-
+		respuesta=hash["/"];
 	}
 	else{
 		if (hash.find(std::get<1>(datos_petitorio)) == hash.end()){

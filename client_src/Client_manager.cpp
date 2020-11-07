@@ -6,7 +6,7 @@
 #include <cstring>
 #include <fstream>
 
-#define TAMANIO_BUFFER 3
+#define TAMANIO_BUFFER 64
 
 void Receptor_input::recibir(){
 	Socket socket(-1);
@@ -23,11 +23,10 @@ void Receptor_input::recibir(){
 
 	ssize_t recibidos=1;
 	std::string output;
-	char buff[5];
+	char buff[TAMANIO_BUFFER];
 	while(recibidos!=0){
-		std::cout << "paso por aca" << std::endl;
-		recibidos=socket.Receive(buff,5);
-		output.append(buff);
+		recibidos=socket.Receive(buff,TAMANIO_BUFFER);
+		output.append(buff,recibidos);
 		memset(buff,0,sizeof(buff));
 	}
 	std::cout << output << std::endl;
