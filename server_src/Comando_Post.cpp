@@ -17,3 +17,4 @@ std::string Comando_Post::Obtener_Respuesta(){
 Comando_Post::~Comando_Post(){
 
 }
+

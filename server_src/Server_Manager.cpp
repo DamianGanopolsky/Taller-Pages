@@ -25,6 +25,11 @@ void Server_Manager::Receive_connections(const char* Port){
 		Socket socket(-1);
 		socket.Bind_And_Listen(NULL,Port);
 		Socket peer=socket.Accept();
+
+		ThClient client(std::move(peer),hash_recursos);
+
+		client.run();
+/*
 		ssize_t recibidos=1;
 		char buff[TAMANIO_BUFFER];
 		while(recibidos!=0){
@@ -59,7 +64,7 @@ void Server_Manager::Receive_connections(const char* Port){
 			char buffer[TAMANIO_BUFFER];
 			iss.read(buffer,TAMANIO_BUFFER);
 			peer.Send(buffer,iss.gcount());
-		}
+		}*/
 }
 
 void Server_Manager::Response(){

@@ -2,6 +2,7 @@
 #define SERVER_SRC_SERVER_MANAGER_H_
 #include <string>
 #include <unordered_map>
+#include "ThClient.h"
 
 class Server_Manager{
 private:

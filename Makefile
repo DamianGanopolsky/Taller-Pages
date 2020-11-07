@@ -17,7 +17,7 @@ extension = cpp
 # toma todos los archivos con la extensiÃ³n mencionada. Para especificar hay que
 # descomentar la lÃ­nea (quitarle el '#' del principio).
 # NOTA: No poner cabeceras (.h).
-fuentes = client_main.cpp server_main.cpp Client_manager.cpp Socket.cpp Thread.cpp File.cpp Parser.cpp Comando_Get.cpp Comando_Post.cpp Comando.cpp
+fuentes = client_main.cpp server_main.cpp Client_manager.cpp Socket.cpp Thread.cpp File.cpp Parser.cpp Comando_Get.cpp Comando_Post.cpp Comando.cpp ThClient.cpp
 
 # Si usa funciones de math.h, descomentar (quitar el '#' a) la siguiente lÃ­nea.
 #math = si

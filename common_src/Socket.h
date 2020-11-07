@@ -22,9 +22,12 @@ public:
 
 	 void Shutdown(int RD_WR);
 
+	 Socket(Socket &&other);
+
+	 Socket &operator=(Socket &&other);
+
 	~Socket();
 };
-
 
 
 #endif /* COMMON_SRC_SOCKET_H_ */

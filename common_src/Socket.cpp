@@ -160,6 +160,17 @@ void Socket::Shutdown(int RD_WR){
 	}
 }
 
+Socket::Socket(Socket &&other) {
+    this->fd = other.fd;
+    other.fd = -1;
+}
+
+Socket &Socket::operator=(Socket &&other) {
+    this->fd = other.fd;
+    other.fd = -1;
+    return *this;
+}
+
 Socket::~Socket(){
 	if(fd!=-1){
 		shutdown(fd,SHUT_RDWR);
