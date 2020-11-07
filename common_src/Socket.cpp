@@ -148,6 +148,10 @@ ssize_t Socket::Receive(char *buffer, size_t length){
 	return length-longitud_restante;
 }
 
+void Socket::Close(){
+	close(fd);
+}
+
 void Socket::Shutdown(int RD_WR){
 	if(RD_WR==0){
 		shutdown(fd,SHUT_RD);

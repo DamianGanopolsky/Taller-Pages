@@ -20,6 +20,8 @@ public:
 
 	 Socket Accept();
 
+	 void Close();
+
 	 void Shutdown(int RD_WR);
 
 	 Socket(Socket &&other);

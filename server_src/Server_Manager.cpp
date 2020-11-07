@@ -9,7 +9,9 @@
 #include <cstring>
 #include <tuple>
 #include <sstream>
+#include <vector>
 #define TAMANIO_BUFFER 64
+#define CLOSED_FD -1
 
 void Server_Manager::Guardar_Root(std::string FileName){
 	File archivo(FileName);
@@ -21,71 +23,29 @@ void Server_Manager::Guardar_Root(std::string FileName){
 }
 
 
-void Server_Manager::Receive_connections(const char* Port){
-		Socket socket(-1);
-		socket.Bind_And_Listen(NULL,Port);
+void Server_Manager::run(){
+	Socket socket(CLOSED_FD);
+	socket.Bind_And_Listen(NULL,port_to_listen);
+	std::vector<ThClient*> clients;
+	//Socket peer=socket.Accept();
+
+	//ThClient* client= new ThClient(std::move(peer),hash_recursos);
+	//client->run();
+	int total_clients=0;
+
+	while(true){
 		Socket peer=socket.Accept();
-
-		ThClient client(std::move(peer),hash_recursos);
-
-		client.run();
-/*
-		ssize_t recibidos=1;
-		char buff[TAMANIO_BUFFER];
-		while(recibidos!=0){
-			recibidos=peer.Receive(buff,TAMANIO_BUFFER);
-			input.append(buff,recibidos);
-			memset(buff,0,sizeof(buff));
-		}
-
-		Parser parser(input);
-		auto datos_petitorio=parser.Parsear_Archivo();
-		std::string respuesta_al_cliente;
-
-		if(std::get<0>(datos_petitorio).compare("GET")==0){
-			Comando_Get comando_get(datos_petitorio,hash_recursos);
-			respuesta_al_cliente=comando_get.Obtener_Respuesta();
-		}
-		else if(std::get<0>(datos_petitorio).compare("POST")==0){
-			Comando_Post comando(datos_petitorio,hash_recursos);
-			respuesta_al_cliente=comando.Obtener_Respuesta();
-		}
-		else{
-			Otro_Comando otro_comando(datos_petitorio,hash_recursos);
-			respuesta_al_cliente=otro_comando.Obtener_Respuesta();
-		}
-
-		//std::cout << "input es " << input << std::endl;
-		//std::cout << "respuesta es:" << respuesta_al_cliente << std::endl;
-		//std::string texto="Texto";
-		std::istringstream iss(respuesta_al_cliente);
-		while(!iss.eof()){
-
-			char buffer[TAMANIO_BUFFER];
-			iss.read(buffer,TAMANIO_BUFFER);
-			peer.Send(buffer,iss.gcount());
-		}*/
-}
-
-void Server_Manager::Response(){
-	Parser parser(input);
-	auto datos_petitorio=parser.Parsear_Archivo();
-	std::string respuesta_al_cliente;
-
-	if(std::get<0>(datos_petitorio).compare("GET")==0){
-		Comando_Get comando_get(datos_petitorio,hash_recursos);
-		respuesta_al_cliente=comando_get.Obtener_Respuesta();
+		total_clients++;
+		clients.reserve(5);
+		ThClient* client= new ThClient(std::move(peer),hash_recursos);
+		client->run();
+		clients.push_back(client);
+		if(total_clients==1) break;
 	}
-	else if(std::get<0>(datos_petitorio).compare("POST")==0){
-		Comando_Post comando(datos_petitorio,hash_recursos);
-		respuesta_al_cliente=comando.Obtener_Respuesta();
+	for(int i=0;i<1;i++){
+		clients[i]->stop();
+		clients[i]->join();
 	}
-	else{
-		Otro_Comando otro_comando(datos_petitorio,hash_recursos);
-		respuesta_al_cliente=otro_comando.Obtener_Respuesta();
-	}
-
-	std::cout << respuesta_al_cliente << std::endl;
 }
 
 

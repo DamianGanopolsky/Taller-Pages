@@ -4,19 +4,25 @@
 #include <unordered_map>
 #include "ThClient.h"
 
-class Server_Manager{
+class Server_Manager: public Thread{
 private:
 
 	std::unordered_map<std::string, std::string> hash_recursos;
-
 	std::string input;
+	//Socket listener;
+	const char* port_to_listen;
+
 public:
+
+	Server_Manager(const char* port):port_to_listen(port){
+
+	}
+
+	void run();
 
 	void Guardar_Root(std::string FileName);
 
 	void Receive_connections(const char* Port);
-
-	void Response();
 
 	~Server_Manager();
 

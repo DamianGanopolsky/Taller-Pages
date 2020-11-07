@@ -42,18 +42,27 @@ void ThClient::process_command(std::string input_client){
 	this->send_answer(respuesta_al_cliente);
 }
 
+void ThClient::stop(){
+	keep_talking=false;
+	Peer.Shutdown(2);
+	Peer.Close();
+}
+
 
 void ThClient::run(){
-	ssize_t recibidos=1;
-	char buff[TAMANIO_BUFFER];
-	std::string input;
-	while(recibidos!=0){
-		recibidos=Peer.Receive(buff,TAMANIO_BUFFER);
-		input.append(buff,recibidos);
-		memset(buff,0,sizeof(buff));
+	while(keep_talking){
+		ssize_t recibidos=1;
+		char buff[TAMANIO_BUFFER];
+		std::string input;
+		while(recibidos!=0){
+			recibidos=Peer.Receive(buff,TAMANIO_BUFFER);
+			input.append(buff,recibidos);
+			memset(buff,0,sizeof(buff));
+		}
+		std::cout << input << std::endl;
+		this->process_command(input);
+		keep_talking=false;
 	}
-	std::cout << input << std::endl;
-	this->process_command(input);
-
+	is_running=false;
 }
 
