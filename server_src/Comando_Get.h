@@ -9,7 +9,7 @@ private:
 	std::unordered_map<std::string, std::string>& hash;
 
 public:
-	Comando_Get(std::tuple<std::string,std::string,std::string> petitorio,\
+	Comando_Get(const std::tuple<std::string,std::string,std::string> petitorio,\
 			std::unordered_map<std::string, std::string>& hash_recursos)\
 	: datos_petitorio(petitorio),hash(hash_recursos){
 	}

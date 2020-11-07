@@ -2,6 +2,7 @@
 #define SERVER_SRC_OTRO_COMANDO_H_
 
 #include "Comando.h"
+#include <unordered_map>
 
 class Otro_Comando: public Comando{
 private:
@@ -9,8 +10,8 @@ private:
 	std::unordered_map<std::string, std::string>& hash;
 
 public:
-	Otro_Comando(std::tuple<std::string,std::string,std::string> petitorio,\
-	std::unordered_map<std::string, std::string>& hash_recursos)\
+	Otro_Comando(const std::tuple<std::string,std::string,std::string>& petitorio,\
+	std::unordered_map<std::string,std::string>& hash_recursos)\
 	: datos_petitorio(petitorio),hash(hash_recursos){
 	}
 
