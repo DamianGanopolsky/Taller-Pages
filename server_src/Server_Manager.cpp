@@ -39,14 +39,13 @@ void Server_Manager::Response(){
 	std::string respuesta_al_cliente;
 	Comando_Get comando_get(datos_petitorio,hash_recursos);
 	respuesta_al_cliente=comando_get.Obtener_Respuesta();
-
-	/*
+/*
 	if(std::get<0>(datos_petitorio).compare("GET")==0){
 		Comando_Get comando_get(datos_petitorio,hash_recursos);
 		respuesta_al_cliente=comando_get.Obtener_Respuesta();
 	}
 	else if(std::get<0>(datos_petitorio).compare("POST")==0){
-		Comando_Post comando(datos_petitorio);
+		Comando_Post comando(datos_petitorio,hash_recursos);
 		respuesta_al_cliente=comando.Obtener_Respuesta();
 	}
 	else{
