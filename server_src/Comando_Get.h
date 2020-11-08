@@ -16,7 +16,7 @@ public:
 	: datos_petitorio(petitorio),hash(hash_recursos){
 	}
 
-	std::string Obtener_Respuesta();
+	std::string Obtener_Respuesta() override;
 
 	~Comando_Get();
 };

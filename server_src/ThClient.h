@@ -26,7 +26,7 @@ public:
 
 	void process_command(std::string input_client);
 
-	void run();
+	void run() override;
 
 	void stop_ex();
 };
