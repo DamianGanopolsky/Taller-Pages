@@ -13,6 +13,7 @@ private:
 	std::atomic<bool> keep_talking;
 	std::atomic<bool> is_running;
 
+
 public:
 	ThClient(Socket peer,std::unordered_map<std::string,std::string>&\
 			hash_recursos):Peer(std::move(peer)),hash(hash_recursos),

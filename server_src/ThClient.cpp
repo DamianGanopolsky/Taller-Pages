@@ -44,6 +44,7 @@ void ThClient::process_command(std::string input_client){
 }
 
 void ThClient::stop_ex(){
+	//std::cout << "peer stop" << std::endl;
 	keep_talking=false;
 	Peer.Shutdown(2);
 	Peer.Close();
