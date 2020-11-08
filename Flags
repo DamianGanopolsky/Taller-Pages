@@ -3,7 +3,21 @@
 
 VALGRIND:
 
+
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < __client_2_stdin__.txt
 valgrind --track-origins=yes ./client 127.0.0.1 8080 < __client_1_stdin__
 valgrind --leak-check=full ./server 8080 index.html
 
+TESTS:
+Test1:
+valgrind --show-leak-kinds=all ./server 8080 casos/01-single-get-root/index.html
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < casos/01-single-get-root/__client_1_stdin__
+
+Salida:
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+Hola!no newline
+
+Test2:
 

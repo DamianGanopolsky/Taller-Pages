@@ -19,6 +19,7 @@ void ThClient::send_answer(std::string server_answer){
 		iss.read(buffer,TAMANIO_BUFFER);
 		Peer.Send(buffer,iss.gcount());
 	}
+
 	Peer.Shutdown(2);
 }
 
@@ -45,9 +46,14 @@ void ThClient::process_command(std::string input_client){
 
 void ThClient::stop_ex(){
 	//std::cout << "peer stop" << std::endl;
-	keep_talking=false;
-	Peer.Shutdown(2);
-	Peer.Close();
+	if(keep_talking==false){
+		Peer.Close();
+	}
+	else{
+		keep_talking=false;
+		Peer.Shutdown(2);
+		Peer.Close();
+	}
 }
 
 
@@ -61,7 +67,6 @@ void ThClient::run(){
 			input.append(buff,recibidos);
 			memset(buff,0,sizeof(buff));
 		}
-		std::cout << input << std::endl;
 		this->process_command(input);
 		keep_talking=false;
 	}

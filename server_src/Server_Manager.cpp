@@ -34,7 +34,6 @@ void Server_Manager::run(){
 	//ThClient* client= new ThClient(std::move(peer),hash_recursos);
 	//client->run();
 	//std::vector<ThClient*> clients;
-	int total_clients=0;
 	Socket peer(-1);
 	//std::cout << "ACA" << std::endl;
 	while(true){
@@ -45,7 +44,7 @@ void Server_Manager::run(){
 		catch(SocketException &except_msg){
 			throw except_msg;
 		}
-		total_clients++;
+		cant_clientes++;
 	//	clients.reserve(2);
 		ThClient* client= new ThClient(std::move(peer),hash_recursos);
 		clients.push_back(client);
@@ -59,22 +58,35 @@ void Server_Manager::run(){
 				//break;
 			//}
 		}
-	for(int i=0;i<1;i++){
-		clients[i]->stop_ex();
-		//std::cout << "poasaa aca" << std::endl;
-		clients[i]->join();
-		delete clients[i];
-	}
+
 }
 
 void Server_Manager::Stop_Looping(){
 	keep_looping=false;
 
+	for(int i=0;i<cant_clientes;i++){
+		clients[i]->stop_ex();
+		//std::cout << "poasaa aca" << std::endl;
+		clients[i]->join();
+		delete clients[i];
+	}
+	std::cout << "ad1"<< std::endl;
 	socket.Shutdown(2);
+	std::cout << "ad2"<< std::endl;
 	socket.Close();
+	std::cout << "ad3"<< std::endl;
 }
 
 
 Server_Manager::~Server_Manager(){
-
+	keep_looping=false;
+	for(int i=0;i<cant_clientes;i++){
+		clients[i]->stop_ex();
+		//std::cout << "poasaa aca" << std::endl;
+		clients[i]->join();
+		delete clients[i];
+	}
+	socket.Shutdown(2);
+	std::cout << "asd" << std::endl;
+	//this->join();
 }

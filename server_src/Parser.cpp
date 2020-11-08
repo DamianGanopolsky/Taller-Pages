@@ -19,7 +19,7 @@ void Obtener_Cabecera(std::string& linea,std::string& tipo_petitorio,std::string
 		tipo_petitorio="GET";
 		Obtener_Key_Recurso(linea,resource);
 	}else if (linea.find("POST")!= std::string::npos){
-		tipo_petitorio="PUT";
+		tipo_petitorio="POST";
 		Obtener_Key_Recurso(linea,resource);
 	}else{
 		tipo_petitorio="OTROMETODO";

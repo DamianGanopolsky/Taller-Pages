@@ -1,6 +1,8 @@
 #include <iostream>
 #include "../common_src/Socket.h"
 #include "Server_Manager.h"
+#include <unistd.h>
+#include <thread>
 
 
 int main(int argc,char* argv[]){
@@ -10,18 +12,18 @@ int main(int argc,char* argv[]){
 
 	Server_Manager server(socket);
 	server.Guardar_Root(argv[2]);
-	//server.Receive_connections(argv[1]);
 	server.start();
 	std::string usr_input = "";
 	while (usr_input != "q") {
 	    std::cin >> usr_input;
 	 }
+	socket.Close();
+	//sleep(10);
 	std::cout << "HOLA" << std::endl;
-	server.Stop_Looping();
-	//socket.Close();
+	//server.Stop_Looping();
+	std::cout << "ad4" << std::endl;
 	//server.join();
-
-	//server.force_stop();
+	std::cout << "ad5" << std::endl;
 
 	return 0;
 }

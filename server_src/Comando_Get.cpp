@@ -5,7 +5,9 @@ std::string Comando_Get::Obtener_Respuesta(){
 
 	std::string respuesta;
 	if(std::get<1>(datos_petitorio).compare("/")==0){
-		respuesta=hash["/"];
+		respuesta="HTTP/1.1 200 OK\nContent-Type: text/html\n\n";
+		respuesta.append(hash["/"]);
+		//respuesta=hash["/"];
 	}
 	else{
 		if (hash.find(std::get<1>(datos_petitorio)) == hash.end()){
