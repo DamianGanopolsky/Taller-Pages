@@ -10,8 +10,8 @@ private:
 	std::unordered_map<std::string, std::string>& hash;
 
 public:
-	Comando_Post(const std::tuple<std::string,std::string,std::string>& petitorio,\
-	std::unordered_map<std::string, std::string>& hash_recursos):\
+	Comando_Post(const std::tuple<std::string,std::string,std::string>& petitorio\
+	,std::unordered_map<std::string, std::string>& hash_recursos):\
 	 datos_petitorio(petitorio),hash(hash_recursos){
 	}
 

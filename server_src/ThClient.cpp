@@ -13,13 +13,11 @@
 
 void ThClient::send_answer(std::string server_answer){
 	std::istringstream iss(server_answer);
-	while(!iss.eof()){
-
+	while (!iss.eof()){
 		char buffer[TAMANIO_BUFFER];
 		iss.read(buffer,TAMANIO_BUFFER);
 		Peer.Send(buffer,iss.gcount());
 	}
-
 	Peer.Shutdown(2);
 }
 
@@ -28,16 +26,13 @@ void ThClient::process_command(std::string input_client){
 	Parser parser(input_client);
 	auto datos_petitorio=parser.Parsear_Archivo();
 	std::string respuesta_al_cliente;
-
-	if(std::get<0>(datos_petitorio).compare("GET")==0){
+	if (std::get<0>(datos_petitorio).compare("GET")==0){
 		Comando_Get comando_get(datos_petitorio,hash);
 		respuesta_al_cliente=comando_get.Obtener_Respuesta();
-	}
-	else if(std::get<0>(datos_petitorio).compare("POST")==0){
+	}else if(std::get<0>(datos_petitorio).compare("POST")==0){
 		Comando_Post comando(datos_petitorio,hash);
 		respuesta_al_cliente=comando.Obtener_Respuesta();
-	}
-	else{
+	}else{
 		Otro_Comando otro_comando(datos_petitorio,hash);
 		respuesta_al_cliente=otro_comando.Obtener_Respuesta();
 	}
@@ -45,11 +40,9 @@ void ThClient::process_command(std::string input_client){
 }
 
 void ThClient::stop_ex(){
-	//std::cout << "peer stop" << std::endl;
-	if(keep_talking==false){
+	if (keep_talking==false){
 		Peer.Close();
-	}
-	else{
+	}else{
 		keep_talking=false;
 		Peer.Shutdown(2);
 		Peer.Close();
@@ -58,11 +51,11 @@ void ThClient::stop_ex(){
 
 
 void ThClient::run(){
-	while(keep_talking){
+	while (keep_talking){
 		ssize_t recibidos=1;
 		char buff[TAMANIO_BUFFER];
 		std::string input;
-		while(recibidos!=0){
+		while (recibidos!=0){
 			recibidos=Peer.Receive(buff,TAMANIO_BUFFER);
 			input.append(buff,recibidos);
 			memset(buff,0,sizeof(buff));

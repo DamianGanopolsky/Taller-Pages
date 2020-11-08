@@ -6,26 +6,21 @@
 #include <cstring>
 #include <fstream>
 #include <string>
-
 #define TAMANIO_BUFFER 64
 
 void Receptor_input::recibir(){
 	Socket socket(-1);
 	socket.Connect(ip,port);
-	while (!std::cin.eof())
-	{
+	while (!std::cin.eof()){
 		char buffer[TAMANIO_BUFFER];
 		std::cin.read(buffer,TAMANIO_BUFFER);
-		//std::cout << buffer << std::endl;
-		//std::cout << std::cin.gcount() << " characters read: " << std::endl;
 		socket.Send(buffer,std::cin.gcount());
 	}
 	socket.Shutdown(1);
-
 	ssize_t recibidos=1;
 	std::string output;
 	char buff[TAMANIO_BUFFER];
-	while(recibidos!=0){
+	while (recibidos!=0){
 		recibidos=socket.Receive(buff,TAMANIO_BUFFER);
 		output.append(buff,recibidos);
 		memset(buff,0,sizeof(buff));

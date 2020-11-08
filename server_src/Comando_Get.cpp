@@ -2,19 +2,14 @@
 #include <iostream>
 
 std::string Comando_Get::Obtener_Respuesta(){
-
 	std::string respuesta;
-	if(std::get<1>(datos_petitorio).compare("/")==0){
+	if (std::get<1>(datos_petitorio).compare("/")==0){
 		respuesta="HTTP/1.1 200 OK\nContent-Type: text/html\n\n";
 		respuesta.append(hash["/"]);
-		//respuesta=hash["/"];
-	}
-	else{
+	}else{ /* NO EXISTE LA KEY */
 		if (hash.find(std::get<1>(datos_petitorio)) == hash.end()){
-			/* NO EXISTE LA KEY */
 			respuesta="HTTP 404 NOT FOUND\n\n";
-		}
-		else{
+		}else{
 			respuesta="Get de recurso";
 			hash[std::get<1>(datos_petitorio)];
 		}

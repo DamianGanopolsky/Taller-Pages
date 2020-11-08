@@ -14,7 +14,8 @@ void Obtener_Key_Recurso(std::string& linea,std::string& recurso){
 	}
 }
 
-void Obtener_Cabecera(std::string& linea,std::string& tipo_petitorio,std::string& resource){
+void Obtener_Cabecera(std::string& linea,\
+		std::string& tipo_petitorio,std::string& resource){
 	if (linea.find("GET")!= std::string::npos){
 		tipo_petitorio="GET";
 		Obtener_Key_Recurso(linea,resource);
@@ -32,25 +33,20 @@ std::tuple<std::string,std::string,std::string> Parser::Parsear_Archivo(){
 	std::string tipo_de_petitorio,resource,body,line;
 	std::istringstream iss(texto);
 	int tipo_de_linea=FIRST_LINE;
-
 	while (std::getline(iss, line)){
-		if(tipo_de_linea==FIRST_LINE){
+		if (tipo_de_linea==FIRST_LINE){
 			Obtener_Cabecera(line,tipo_de_petitorio,resource);
 			tipo_de_linea=HEADER_LINE;
 		}
-		if(line.empty()){
+		if (line.empty()){
 			tipo_de_linea=BODY_LINE;
 			continue;
 		}
-		if(tipo_de_linea==BODY_LINE){
-			std::cout << line << std::endl;
+		if (tipo_de_linea==BODY_LINE){
 			body.append(line);
 			body.append("\n");
 		}
 	}
-	//std::cout << "Tipo" << tipo_de_petitorio << std::endl;
-	//std::cout << "Recurso" << resource << std::endl;
-	//std::cout << "Body" << body << std::endl;
 	datos_petitorio=make_tuple(tipo_de_petitorio,resource,body);
 	return datos_petitorio;
 }

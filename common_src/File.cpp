@@ -2,7 +2,6 @@
 #include <string>
 
 
-
 std::string File::getLine() {
 	std::string line;
 	std::getline(*inputFile, line);
