@@ -12,12 +12,11 @@ private:
 	std::string input;
 	std::vector<ThClient*> clients;
 	Socket& socket;
-	std::atomic<bool> keep_looping;
 	int cant_clientes;
 
 public:
 	explicit Server_Manager(Socket& sock):socket(sock),\
-	keep_looping(true),cant_clientes(0){
+	cant_clientes(0){
 		clients.clear();
 	}
 

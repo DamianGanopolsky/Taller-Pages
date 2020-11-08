@@ -24,6 +24,11 @@ public:
 
 	 void Shutdown(int RD_WR);
 
+	 void setToInvalidFd();
+	 Socket& operator=(const Socket &other) = delete;
+	 Socket(const Socket &other) = delete;
+
+
 	 Socket(Socket &&other);
 
 	 Socket &operator=(Socket &&other);

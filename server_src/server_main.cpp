@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <thread>
 #define CLOSED_FD -1
+#define CERRAR_RD_WR 2
 
 
 int main(int argc,char* argv[]){
@@ -17,8 +18,9 @@ int main(int argc,char* argv[]){
 	while (user_input != "q") {
 	    std::cin >> user_input;
 	 }
+	socket.Shutdown(CERRAR_RD_WR);
 	socket.Close();
-	//server.Stop_Looping();
-	//server.join();
+	socket.setToInvalidFd();
+	server.join();
 	return 0;
 }

@@ -9,6 +9,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include "Socket_exception.h"
+#include <iostream>
 
 
 
@@ -176,9 +177,15 @@ Socket &Socket::operator=(Socket &&other) {
     return *this;
 }
 
+void Socket::setToInvalidFd(){
+	fd=-1;
+}
+
 Socket::~Socket(){
+/*	std::cout << "Destruyo el socket" << std::endl;
 	if(fd!=-1){
+		std::cout << "Destruyo de verdad el socket" << std::endl;
 		shutdown(fd,SHUT_RDWR);
 		close(fd);
-	}
+	} */
 }

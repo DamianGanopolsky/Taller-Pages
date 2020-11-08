@@ -34,7 +34,7 @@ void Server_Manager::run(){
 			peer=socket.Accept();
 		}
 		catch(SocketException &except_msg){
-			throw;
+			throw except_msg;
 		}
 		cant_clientes++;
 		ThClient* client= new ThClient(std::move(peer),hash_recursos);
@@ -42,25 +42,13 @@ void Server_Manager::run(){
 		client->start();
 		}
 }
-/*
-void Server_Manager::Stop_Looping(){
-	keep_looping=false;
-	for (int i=0;i<cant_clientes;i++){
-		clients[i]->stop_ex();
-		clients[i]->join();
-		delete clients[i];
-	}
-	socket.Shutdown(CERRAR_RD_WR);
-	//socket.Close();
-}
-*/
+
 
 Server_Manager::~Server_Manager(){
-	keep_looping=false;
+	std::cout << "Se llamo al destructor" << std::endl;
 	for (int i=0; i<cant_clientes; i++){
 		clients[i]->stop_ex();
 		clients[i]->join();
 		delete clients[i];
 	}
-	socket.Shutdown(CERRAR_RD_WR);
 }
