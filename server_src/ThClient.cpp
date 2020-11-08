@@ -25,6 +25,8 @@ void ThClient::send_answer(std::string server_answer){
 
 
 void ThClient::process_command(std::string input_client){
+	std::string primera_linea=input_client.substr(0,input_client.find("\n"));
+	std::cout << primera_linea << std::endl;
 	Parser parser(input_client);
 	auto datos_petitorio=parser.Parsear_Archivo();
 	std::string respuesta_al_cliente;
