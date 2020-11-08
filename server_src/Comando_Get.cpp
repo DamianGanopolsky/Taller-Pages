@@ -1,5 +1,6 @@
 #include "Comando_Get.h"
 #include <iostream>
+#include <string>
 
 std::string Comando_Get::Obtener_Respuesta(){
 	std::string respuesta;
@@ -18,6 +19,5 @@ std::string Comando_Get::Obtener_Respuesta(){
 }
 
 Comando_Get::~Comando_Get(){
-
 }
 

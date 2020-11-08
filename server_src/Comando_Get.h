@@ -2,6 +2,8 @@
 #define SERVER_SRC_COMANDO_GET_H_
 #include "Comando.h"
 #include <unordered_map>
+#include <tuple>
+#include <string>
 
 class Comando_Get: public Comando{
 private:

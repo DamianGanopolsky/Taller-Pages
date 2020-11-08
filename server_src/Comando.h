@@ -6,7 +6,6 @@
 
 class Comando{
 private:
-
 public:
 	Comando(){
 	}

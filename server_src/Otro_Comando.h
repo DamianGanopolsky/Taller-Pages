@@ -3,6 +3,8 @@
 
 #include "Comando.h"
 #include <unordered_map>
+#include <tuple>
+#include <string>
 
 class Otro_Comando: public Comando{
 private:

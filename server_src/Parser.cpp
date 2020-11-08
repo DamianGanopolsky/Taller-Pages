@@ -52,7 +52,6 @@ std::tuple<std::string,std::string,std::string> Parser::Parsear_Archivo(){
 }
 
 Parser::~Parser(){
-
 }
 
 

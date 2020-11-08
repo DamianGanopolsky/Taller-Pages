@@ -8,7 +8,9 @@
 #include <iostream>
 #include <cstring>
 #include <sstream>
+#include <string>
 #define TAMANIO_BUFFER 64
+#define CERRAR_RD_WR 2
 
 
 void ThClient::send_answer(std::string server_answer){
@@ -18,7 +20,7 @@ void ThClient::send_answer(std::string server_answer){
 		iss.read(buffer,TAMANIO_BUFFER);
 		Peer.Send(buffer,iss.gcount());
 	}
-	Peer.Shutdown(2);
+	Peer.Shutdown(CERRAR_RD_WR);
 }
 
 
@@ -29,7 +31,7 @@ void ThClient::process_command(std::string input_client){
 	if (std::get<0>(datos_petitorio).compare("GET")==0){
 		Comando_Get comando_get(datos_petitorio,hash);
 		respuesta_al_cliente=comando_get.Obtener_Respuesta();
-	}else if(std::get<0>(datos_petitorio).compare("POST")==0){
+	}else if (std::get<0>(datos_petitorio).compare("POST")==0){
 		Comando_Post comando(datos_petitorio,hash);
 		respuesta_al_cliente=comando.Obtener_Respuesta();
 	}else{
@@ -44,7 +46,7 @@ void ThClient::stop_ex(){
 		Peer.Close();
 	}else{
 		keep_talking=false;
-		Peer.Shutdown(2);
+		Peer.Shutdown(CERRAR_RD_WR);
 		Peer.Close();
 	}
 }

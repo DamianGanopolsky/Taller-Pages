@@ -1,4 +1,5 @@
 #include "Comando_Post.h"
+#include <string>
 
 
 std::string Comando_Post::Obtener_Respuesta(){
@@ -15,6 +16,5 @@ std::string Comando_Post::Obtener_Respuesta(){
 
 
 Comando_Post::~Comando_Post(){
-
 }
 

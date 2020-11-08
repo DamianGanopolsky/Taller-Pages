@@ -19,9 +19,9 @@ void File::Asign(std::string &cuerpo){
 }
 
 int File::longitud_archivo(){
-	inputFile->seekg (0, inputFile->end);
+	inputFile->seekg(0, inputFile->end);
 	int length = inputFile->tellg();
-	inputFile->seekg (0, inputFile->beg);
+	inputFile->seekg(0, inputFile->beg);
 	return length;
 }
 

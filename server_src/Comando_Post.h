@@ -2,6 +2,8 @@
 #define SERVER_SRC_COMANDO_POST_H_
 #include "Comando.h"
 #include <unordered_map>
+#include <string>
+#include <tuple>
 
 
 class Comando_Post: public Comando{

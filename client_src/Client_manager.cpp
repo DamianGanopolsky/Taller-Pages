@@ -31,5 +31,4 @@ void Receptor_input::recibir(){
 
 
 Receptor_input::~Receptor_input(){
-
 }

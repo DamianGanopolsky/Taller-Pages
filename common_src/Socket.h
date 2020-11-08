@@ -7,8 +7,8 @@ private:
 	int fd;
 
 public:
-	 Socket(int FileDescriptor):fd(FileDescriptor){
-	};
+	 explicit Socket(int FileDescriptor):fd(FileDescriptor){
+	}
 
 	 void Connect(const char *host, const char *service);
 

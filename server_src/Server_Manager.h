@@ -8,7 +8,6 @@
 
 class Server_Manager: public Thread{
 private:
-
 	std::unordered_map<std::string, std::string> hash_recursos;
 	std::string input;
 	std::vector<ThClient*> clients;
@@ -17,7 +16,6 @@ private:
 	int cant_clientes;
 
 public:
-
 	explicit Server_Manager(Socket& sock):socket(sock),\
 	keep_looping(true),cant_clientes(0){
 		clients.clear();
@@ -32,7 +30,6 @@ public:
 	void Stop_Looping();
 
 	~Server_Manager();
-
 };
 
 

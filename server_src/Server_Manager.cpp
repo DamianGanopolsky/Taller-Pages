@@ -10,9 +10,11 @@
 #include <tuple>
 #include <sstream>
 #include <vector>
+#include <utility>
 #include "../common_src/Socket_exception.h"
 #define TAMANIO_BUFFER 64
 #define CLOSED_FD -1
+#define CERRAR_RD_WR 2
 
 
 void Server_Manager::Guardar_Root(std::string FileName){
@@ -27,16 +29,8 @@ void Server_Manager::Guardar_Root(std::string FileName){
 
 void Server_Manager::run(){
 	Socket peer(-1);
-	//	Socket socket(CLOSED_FD);
-		//socket.Bind_And_Listen(NULL,port_to_listen);
-
-		//Socket peer=socket.Accept();
-		//ThClient* client= new ThClient(std::move(peer),hash_recursos);
-		//client->run();
-		//std::vector<ThClient*> clients;
 	while (true){
 		try{
-			std::cout << "paso" << std::endl;
 			peer=socket.Accept();
 		}
 		catch(SocketException &except_msg){
@@ -48,32 +42,25 @@ void Server_Manager::run(){
 		client->start();
 		}
 }
-
+/*
 void Server_Manager::Stop_Looping(){
 	keep_looping=false;
 	for (int i=0;i<cant_clientes;i++){
 		clients[i]->stop_ex();
-		//std::cout << "poasaa aca" << std::endl;
 		clients[i]->join();
 		delete clients[i];
 	}
-	std::cout << "ad1"<< std::endl;
-	socket.Shutdown(2);
-	std::cout << "ad2"<< std::endl;
+	socket.Shutdown(CERRAR_RD_WR);
 	//socket.Close();
-	std::cout << "ad3"<< std::endl;
 }
-
+*/
 
 Server_Manager::~Server_Manager(){
 	keep_looping=false;
-	for (int i=0;i<cant_clientes;i++){
+	for (int i=0; i<cant_clientes; i++){
 		clients[i]->stop_ex();
-		//std::cout << "poasaa aca" << std::endl;
 		clients[i]->join();
 		delete clients[i];
 	}
-	socket.Shutdown(2);
-	std::cout << "asd" << std::endl;
-	//this->join();
+	socket.Shutdown(CERRAR_RD_WR);
 }

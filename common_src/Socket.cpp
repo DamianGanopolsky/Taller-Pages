@@ -44,7 +44,6 @@ void Socket::Connect(const char *host, const char *service){
 
 
 void Socket::Bind_And_Listen(const char *host,const char *service){
-
     int fdscriptor = -1;
     struct addrinfo hints;
 	struct addrinfo *result, *rp;
@@ -90,7 +89,7 @@ Socket Socket::Accept(){
     return Socket(newFd);
 }
 
-ssize_t Socket::Send( char* buffer, size_t length){
+ssize_t Socket::Send(char* buffer, size_t length){
 	ssize_t longitud_restante=length;
 	char* puntero_a_caracter_actual=buffer;
 
@@ -100,7 +99,7 @@ ssize_t Socket::Send( char* buffer, size_t length){
     			,longitud_restante,MSG_NOSIGNAL);
     	// Si caracteres enviados=-1, hubo un error en el intento de envio
         if (caracteres_enviados==-1){
-        	printf("Oh dear, something went wrong with read()! %s\n", strerror(errno));
+        	printf("Error al leer %s\n", strerror(errno));
         	if (errno==EACCES){
         		fprintf(stderr,\
         				"No esta permitida la escritura en el fd de destino\n");
@@ -108,11 +107,11 @@ ssize_t Socket::Send( char* buffer, size_t length){
         		fprintf(stderr,"El socket no esta ligado a una direccion \n");
         	}else if (errno==EBADF){
         		fprintf(stderr,"sockfd no es un file descriptor valido\n");
-        	}else if(errno==ENOTCONN){
+        	}else if (errno==ENOTCONN){
         		fprintf(stderr,"The socket is not connected\n");
-        	}else if(errno==EDESTADDRREQ){
+        	}else if (errno==EDESTADDRREQ){
         		fprintf(stderr,"The socket is not connection-mode,\n");
-        	}else if(errno==ECONNRESET){
+        	}else if (errno==ECONNRESET){
         		fprintf(stderr,"Connection reset by peer,\n");
         	}else{
         		fprintf(stderr,"Error al enviar \n");

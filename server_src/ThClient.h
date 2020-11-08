@@ -4,6 +4,8 @@
 #include "../common_src/Socket.h"
 #include <atomic>
 #include <unordered_map>
+#include <utility>
+#include <string>
 
 
 class ThClient: public Thread{
@@ -18,7 +20,6 @@ public:
 	ThClient(Socket peer,std::unordered_map<std::string,std::string>&\
 			hash_recursos):Peer(std::move(peer)),hash(hash_recursos),
 			keep_talking(true),is_running(true){
-
 	}
 
 	void send_answer(std::string server_answer);
