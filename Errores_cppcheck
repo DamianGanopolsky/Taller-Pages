@@ -69,7 +69,6 @@ Checking /task/student/source_unsafe/server_src/ThClient.h ...
 26/27 files checked 97% done
 Checking /task/student/source_unsafe/server_src/server_main.cpp ...
 27/27 files checked 100% done
-/task/student/source_unsafe/common_src/File.cpp:5:0: style: The function 'getLine' is never used. [unusedFunction]
 
 ^
 /task/student/source_unsafe/common_src/Socket_exception.h:11:0: style: The function 'what' is never used. [unusedFunction]

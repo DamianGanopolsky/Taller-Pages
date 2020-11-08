@@ -18,9 +18,7 @@ public:
 		inputFile = new std::ifstream;
 		inputFile->open(file_name, std::ios::in);
 	}
-	//Lee una linea del archivo, devuelve esta linea como string y avanza una
-	//linea en la lectura del archivo.
-	std::string getLine();
+	//std::string getLine();
 
 	int longitud_archivo();
 
