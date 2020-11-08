@@ -5,6 +5,7 @@
 #include <sstream>
 #include <cstring>
 #include <fstream>
+#include <string>
 
 #define TAMANIO_BUFFER 64
 
@@ -29,13 +30,8 @@ void Receptor_input::recibir(){
 		output.append(buff,recibidos);
 		memset(buff,0,sizeof(buff));
 	}
-	std::istringstream iss(output);
-	std::string linea_respuesta;
-	while(std::getline(iss,linea_respuesta)){
-		std::cout << linea_respuesta << std::endl;
-	}
-
-
+	std::string output_sin_newline=output.substr(0, output.size()-1);
+	std::cout << output_sin_newline << std::endl;
 }
 
 

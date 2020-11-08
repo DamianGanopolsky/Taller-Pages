@@ -2,7 +2,7 @@
 
 
 std::string Otro_Comando::Obtener_Respuesta(){
-	std::string respuesta= "HTTP 405 METHOD NOT ALLOWED\n\n";
+	std::string respuesta= "HTTP 405 METHOD NOT ALLOWED\n\nPUT es un comando desconocidoo";
 	return respuesta;
 }
 

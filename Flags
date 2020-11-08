@@ -36,13 +36,49 @@ HTTP/1.1 200 OK
 
 
 Test3:
+valgrind --show-leak-kinds=all ./server 8080 casos/03-lots-of-posts/index.html
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < casos/03-lots-of-posts/__client_1_stdin__
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < casos/03-lots-of-posts/__client_2_stdin__
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < casos/03-lots-of-posts/__client_3_stdin__
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < casos/03-lots-of-posts/__client_4_stdin__
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < casos/03-lots-of-posts/__client_5_stdin__
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < casos/03-lots-of-posts/__client_6_stdin__
 
+HTTP/1.1 200 OK
 
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<h1>Mi recurso test</h1>
+	</body>
+</html>SIn new line
+PARA CLIENTS 1,2,3 Y 4
 
+HTTP/1.1 200 OK
 
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<h1>Mi recurso other</h1>
+	</body>
+</html> sin new line
+PARA CLIENTS 5 Y 6
 
+TEST 4:
+valgrind --show-leak-kinds=all ./server 8080 casos/04-unsupported-operation/index.html
+valgrind --track-origins=yes ./client 127.0.0.1 8080 <  casos/04-unsupported-operation/__client_1_stdin__
+valgrind --track-origins=yes ./client 127.0.0.1 8080 <  casos/04-unsupported-operation/__client_2_stdin__
+:PARA AMBOS:
+HTTP 405 METHOD NOT ALLOWED
 
+PUT es un comando desconocido sin newline
 
-
+TEST 5:
+valgrind --show-leak-kinds=all ./server 8080 casos/05-forbidden-post/index.html
+valgrind --track-origins=yes ./client 127.0.0.1 8080 <  casos/05-forbidden-post/__client_1_stdin__
+salida:
+HTTP/1.1 403 FORBIDDEN con \n
 
 

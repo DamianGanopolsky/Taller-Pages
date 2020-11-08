@@ -8,7 +8,7 @@ std::string Comando_Post::Obtener_Respuesta(){
 	}
 	else{
 		hash[std::get<1>(datos_petitorio)]=std::get<2>(datos_petitorio);
-		respuesta="HTTP/1.1 200 OK\n";
+		respuesta="HTTP/1.1 200 OK\n\n";
 		respuesta.append(std::get<2>(datos_petitorio));
 	}
 	return respuesta;
