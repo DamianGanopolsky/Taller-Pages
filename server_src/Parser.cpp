@@ -43,7 +43,9 @@ std::tuple<std::string,std::string,std::string> Parser::Parsear_Archivo(){
 			continue;
 		}
 		if(tipo_de_linea==BODY_LINE){
+			std::cout << line << std::endl;
 			body.append(line);
+			body.append("\n");
 		}
 	}
 	//std::cout << "Tipo" << tipo_de_petitorio << std::endl;

@@ -20,4 +20,29 @@ Content-Type: text/html
 Hola!no newline
 
 Test2:
+valgrind --show-leak-kinds=all ./server 8080 casos/02-single-post-resource/index.html
+valgrind --track-origins=yes ./client 127.0.0.1 8080 < casos/02-single-post-resource/__client_1_stdin__
+
+Salida:
+HTTP/1.1 200 OK
+
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<h1>Mi recurso test</h1>
+	</body>
+</html> sin newline
+
+
+Test3:
+
+
+
+
+
+
+
+
+
 

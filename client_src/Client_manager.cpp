@@ -17,7 +17,7 @@ void Receptor_input::recibir(){
 		std::cin.read(buffer,TAMANIO_BUFFER);
 		//std::cout << buffer << std::endl;
 		//std::cout << std::cin.gcount() << " characters read: " << std::endl;
-		socket.Send(buffer,TAMANIO_BUFFER);
+		socket.Send(buffer,std::cin.gcount());
 	}
 	socket.Shutdown(1);
 
@@ -29,7 +29,12 @@ void Receptor_input::recibir(){
 		output.append(buff,recibidos);
 		memset(buff,0,sizeof(buff));
 	}
-	std::cout << output << std::endl;
+	std::istringstream iss(output);
+	std::string linea_respuesta;
+	while(std::getline(iss,linea_respuesta)){
+		std::cout << linea_respuesta << std::endl;
+	}
+
 
 }
 
