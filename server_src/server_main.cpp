@@ -18,12 +18,13 @@ int main(int argc,char* argv[]){
 	socket.Bind_And_Listen(NULL,argv[1]);
 	Server_Manager server(std::move(socket));
 	server.Guardar_Root(argv[2]);
-	server.start();
+	//server.start();
+	server();
 	std::string user_input;
 	while (user_input != "q") {
 	    std::cin >> user_input;
 	 }
-	server.clean();
+	server.stop_running();
 	server.join();
 	return EXITO;
 }

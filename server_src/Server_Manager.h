@@ -23,9 +23,11 @@ public:
 
 	void run() override;
 
+	void operator()();
+
 	void Guardar_Root(std::string FileName);
 
-	void clean();
+	void stop_running();
 
 	void clean_zombies();
 

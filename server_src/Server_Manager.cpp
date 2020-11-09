@@ -26,40 +26,44 @@ void Server_Manager::Guardar_Root(std::string FileName){
 	hash_recursos["/"]=cuerpo;
 }
 
+void Server_Manager::operator()(){
+	start();
+}
+
 
 void Server_Manager::run(){
-		Socket peer(-1);
-		while (true){
-			try{
-				peer=socket.Accept();
-			}
-			catch(SocketException &except_msg){
-				break;
-			}
-			cant_clientes++;
-			ThClient* client= new ThClient(std::move(peer),hash_recursos);
-			clients.push_back(client);
-			client->start();
-			clean_zombies();
-			}
+	Socket peer(-1);
+	while (true){
+		try{
+			peer=socket.Accept();
+		}
+		catch(SocketException &except_msg){
+			break;
+		}
+		cant_clientes++;
+		ThClient* client= new ThClient(std::move(peer),hash_recursos);
+		clients.push_back(client);
+		client->start();
+		clean_zombies();
+	}
 }
 
 void Server_Manager::clean_zombies(){
 	for (std::vector<ThClient*>::iterator it = clients.begin();\
-		it != clients.end();) {
-		if (!(*it)->is_alive()) {
+		it != clients.end();){
+		if (!(*it)->is_alive()){
 			(*it)->join();
 			delete *it;
 			cant_clientes--;
 			it = clients.erase(it);
-	    }else {
+	    }else{
 	    	++it;
 	    }
 	  }
 }
 
 
-void Server_Manager::clean(){
+void Server_Manager::stop_running(){
 	socket.Shutdown(CERRAR_RD_WR);
 	socket.Close();
 	socket.setToInvalidFd();
