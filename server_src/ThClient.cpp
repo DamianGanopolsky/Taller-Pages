@@ -44,11 +44,6 @@ void ThClient::process_command(std::string input_client){
 	this->send_answer(respuesta_al_cliente);
 }
 
-void ThClient::stop_ex(){
-	//Peer.Shutdown(CERRAR_RD_WR);
-	//Peer.Close();
-}
-
 
 void ThClient::run(){
 	ssize_t recibidos=1;
@@ -58,7 +53,6 @@ void ThClient::run(){
 		recibidos=Peer.Receive(buff,TAMANIO_BUFFER);
 		input.append(buff,recibidos);
 		memset(buff,0,sizeof(buff));
-
 	}
 	this->process_command(input);
 }
