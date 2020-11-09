@@ -32,7 +32,7 @@ verbose = si
 CFLAGS += -Wall -Werror -pedantic -pedantic-errors
 
 # Para optimizar el binario resultante lo mejor posible
-CFLAGS += -O3
+CFLAGS += -O1
 
 # Para valgrind o debug
 CFLAGS += -ggdb -DDEBUG -fno-inline
