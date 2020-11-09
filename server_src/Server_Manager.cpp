@@ -16,6 +16,9 @@
 #define CLOSED_FD -1
 #define CERRAR_RD_WR 2
 
+void Server_Manager::operator()(){
+	start();
+}
 
 void Server_Manager::Guardar_Root(std::string FileName){
 	File archivo(FileName);
@@ -26,16 +29,12 @@ void Server_Manager::Guardar_Root(std::string FileName){
 	hash_recursos["/"]=cuerpo;
 }
 
-void Server_Manager::operator()(){
-	start();
-}
-
 
 void Server_Manager::run(){
-	Socket peer(-1);
+	Socket peer;
 	while (true){
 		try{
-			peer=socket.Accept();
+			peer=listener.Accept();
 		}
 		catch(SocketException &except_msg){
 			break;
@@ -47,6 +46,7 @@ void Server_Manager::run(){
 		clean_zombies();
 	}
 }
+
 
 void Server_Manager::clean_zombies(){
 	for (std::vector<ThClient*>::iterator it = clients.begin();\
@@ -64,9 +64,9 @@ void Server_Manager::clean_zombies(){
 
 
 void Server_Manager::stop_running(){
-	socket.Shutdown(CERRAR_RD_WR);
-	socket.Close();
-	socket.setToInvalidFd();
+	listener.Shutdown(CERRAR_RD_WR);
+	listener.Close();
+	listener.setToInvalidFd();
 }
 
 

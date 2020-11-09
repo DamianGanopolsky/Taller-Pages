@@ -29,7 +29,6 @@ public:
 
 	void run() override;
 
-	void stop_ex();
 };
 
 

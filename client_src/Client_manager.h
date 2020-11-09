@@ -12,7 +12,7 @@ private:
 
 public:
 	 Client_Manager(const char* ip_argv,const char* port_argv):\
-	 ip(ip_argv),port(port_argv),socket(-1){
+	 ip(ip_argv),port(port_argv){
 	}
 	 void enviar_al_server();
 

@@ -1,13 +1,14 @@
 #ifndef COMMON_SRC_SOCKET_H_
 #define COMMON_SRC_SOCKET_H_
 #include <sys/types.h>
+#define FILE_DESCRIPTOR_INVALIDO -1
 
 class Socket{
 private:
 	int fd;
 
 public:
-	 explicit Socket(int FileDescriptor):fd(FileDescriptor){
+	 explicit Socket():fd(FILE_DESCRIPTOR_INVALIDO){
 	}
 
 	 void Connect(const char *host, const char *service);

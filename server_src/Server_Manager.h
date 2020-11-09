@@ -12,11 +12,11 @@ private:
 	std::unordered_map<std::string, std::string> hash_recursos;
 	std::string input;
 	std::vector<ThClient*> clients;
-	Socket socket;
+	Socket listener;
 	int cant_clientes;
 
 public:
-	explicit Server_Manager(Socket sock):socket(std::move(sock)),\
+	explicit Server_Manager(Socket sock):listener(std::move(sock)),\
 	cant_clientes(0){
 		clients.clear();
 	}
@@ -30,8 +30,6 @@ public:
 	void stop_running();
 
 	void clean_zombies();
-
-	void Receive_connections(const char* Port);
 
 	~Server_Manager();
 };
