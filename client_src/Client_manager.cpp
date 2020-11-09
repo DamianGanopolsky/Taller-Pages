@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #define TAMANIO_BUFFER 64
+#define SHUT_WR 1
 
 void Client_Manager::enviar_al_server(){
 	socket.Connect(ip,port);
@@ -15,8 +16,7 @@ void Client_Manager::enviar_al_server(){
 		std::cin.read(buffer,TAMANIO_BUFFER);
 		socket.Send(buffer,std::cin.gcount());
 	}
-	socket.Shutdown(1);
-
+	socket.Shutdown(SHUT_WR);
 }
 
 

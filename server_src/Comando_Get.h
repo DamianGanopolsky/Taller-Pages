@@ -4,11 +4,13 @@
 #include <unordered_map>
 #include <tuple>
 #include <string>
+#include <mutex>
 
 class Comando_Get: public Comando{
 private:
 	std::tuple<std::string,std::string,std::string> datos_petitorio;
 	std::unordered_map<std::string, std::string>& hash;
+	std::mutex m;
 
 public:
 	Comando_Get(const std::tuple<std::string,std::string,std::string> petitorio,\

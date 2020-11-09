@@ -8,8 +8,12 @@ private:
 	int fd;
 
 public:
-	 explicit Socket():fd(FILE_DESCRIPTOR_INVALIDO){
+	 Socket():fd(FILE_DESCRIPTOR_INVALIDO){
 	}
+
+	 explicit Socket(int i):fd(i){
+
+	 }
 
 	 void Connect(const char *host, const char *service);
 
