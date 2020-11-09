@@ -44,13 +44,9 @@ void ThClient::process_command(std::string input_client){
 }
 
 void ThClient::stop_ex(){
-	if (keep_talking==false){
-		Peer.Close();
-	}else{
-		keep_talking=false;
-		Peer.Shutdown(CERRAR_RD_WR);
-		Peer.Close();
-	}
+	keep_talking=false;
+	Peer.Shutdown(CERRAR_RD_WR);
+	Peer.Close();
 }
 
 

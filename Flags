@@ -10,7 +10,7 @@ valgrind --leak-check=full ./server 8080 index.html
 
 TESTS:
 Test1:
-valgrind ./server 8080 casos/01-single-get-root/index.html
+valgrind --leak-check=full ./server 8080 casos/01-single-get-root/index.html
 valgrind ./client 127.0.0.1 8080 < casos/01-single-get-root/__client_1_stdin__
 
 Salida cliente :

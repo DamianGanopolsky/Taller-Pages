@@ -11,11 +11,11 @@ private:
 	std::unordered_map<std::string, std::string> hash_recursos;
 	std::string input;
 	std::vector<ThClient*> clients;
-	Socket& socket;
+	Socket socket;
 	int cant_clientes;
 
 public:
-	explicit Server_Manager(Socket& sock):socket(sock),\
+	explicit Server_Manager(Socket sock):socket(std::move(sock)),\
 	cant_clientes(0){
 		clients.clear();
 	}
@@ -23,6 +23,8 @@ public:
 	void run() override;
 
 	void Guardar_Root(std::string FileName);
+
+	void clean();
 
 	void Receive_connections(const char* Port);
 

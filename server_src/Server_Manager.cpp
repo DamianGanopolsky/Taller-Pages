@@ -34,13 +34,31 @@ void Server_Manager::run(){
 			peer=socket.Accept();
 		}
 		catch(SocketException &except_msg){
+			std::cout << "asd1" << std::endl;
+			clean();
 			throw;
+			std::cout << "asd" << std::endl;
 		}
 		cant_clientes++;
 		ThClient* client= new ThClient(std::move(peer),hash_recursos);
 		clients.push_back(client);
 		client->start();
 		}
+}
+
+void Server_Manager::clean(){
+	for (int i=0; i<cant_clientes; i++){
+		std::cout << "asd" << std::endl;
+		clients[i]->stop_ex();
+		std::cout << "asd" << std::endl;
+		clients[i]->join();
+		std::cout << "asd" << std::endl;
+		delete clients[i];
+	}
+	socket.Shutdown(CERRAR_RD_WR);
+	socket.Close();
+	socket.setToInvalidFd();
+	std::cout << "asd" << std::endl;
 }
 
 
