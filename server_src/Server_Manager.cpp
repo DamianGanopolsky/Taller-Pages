@@ -34,7 +34,6 @@ void Server_Manager::run(){
 			peer=socket.Accept();
 		}
 		catch(SocketException &except_msg){
-			std::cout << "asd1" << std::endl;
 			break;
 		}
 		cant_clientes++;
@@ -45,15 +44,6 @@ void Server_Manager::run(){
 }
 
 void Server_Manager::clean(){
-/*
-	for (int i=0; i<cant_clientes; i++){
-		std::cout << "asd" << std::endl;
-		//clients[i]->stop_ex();
-		clients[i]->join();
-		std::cout << "asd" << std::endl;
-		std::cout << "asd" << std::endl;
-		delete clients[i];
-	} */
 	socket.Shutdown(CERRAR_RD_WR);
 	socket.Close();
 	socket.setToInvalidFd();
