@@ -30,8 +30,10 @@ void ThClient::process_command(std::string input_client){
 	std::cout << primera_linea << std::endl;
 	Parser parser(input_client);
 	auto datos_petitorio=parser.Parsear_Archivo();
+
 	std::string respuesta_al_cliente;
-	if (std::get<0>(datos_petitorio).compare("GET")==0){
+	monitor.Obtener_Respuesta(datos_petitorio, respuesta_al_cliente);
+/*	if (std::get<0>(datos_petitorio).compare("GET")==0){
 		Comando_Get comando_get(datos_petitorio,hash);
 		respuesta_al_cliente=comando_get.Obtener_Respuesta();
 	}else if (std::get<0>(datos_petitorio).compare("POST")==0){
@@ -40,7 +42,7 @@ void ThClient::process_command(std::string input_client){
 	}else{
 		Otro_Comando otro_comando(datos_petitorio,hash);
 		respuesta_al_cliente=otro_comando.Obtener_Respuesta();
-	}
+	}*/
 	this->send_answer(respuesta_al_cliente);
 }
 
