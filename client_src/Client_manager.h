@@ -12,7 +12,7 @@ public:
 	 Receptor_input(const char* ip_argv,const char* port_argv):\
 	 ip(ip_argv),port(port_argv){
 	}
-	 void recibir();
+	 void comunicar_con_server();
 
 
 	~Receptor_input();

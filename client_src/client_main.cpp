@@ -5,6 +5,6 @@
 
 int main(int argc, char* argv[]){
 	Receptor_input receptor(argv[1],argv[2]);
-	receptor.recibir();
+	receptor.comunicar_con_server();
 	return 0;
 }

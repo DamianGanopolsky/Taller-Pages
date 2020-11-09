@@ -28,13 +28,13 @@ void Server_Manager::Guardar_Root(std::string FileName){
 
 
 void Server_Manager::run(){
-	Socket peer(-1);
+		Socket peer(-1);
 	while (true){
 		try{
 			peer=socket.Accept();
 		}
 		catch(SocketException &except_msg){
-			throw except_msg;
+			throw;
 		}
 		cant_clientes++;
 		ThClient* client= new ThClient(std::move(peer),hash_recursos);
@@ -45,7 +45,6 @@ void Server_Manager::run(){
 
 
 Server_Manager::~Server_Manager(){
-	std::cout << "Se llamo al destructor" << std::endl;
 	for (int i=0; i<cant_clientes; i++){
 		clients[i]->stop_ex();
 		clients[i]->join();

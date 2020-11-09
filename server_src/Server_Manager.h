@@ -26,8 +26,6 @@ public:
 
 	void Receive_connections(const char* Port);
 
-	void Stop_Looping();
-
 	~Server_Manager();
 };
 

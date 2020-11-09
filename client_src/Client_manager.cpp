@@ -8,7 +8,7 @@
 #include <string>
 #define TAMANIO_BUFFER 64
 
-void Receptor_input::recibir(){
+void Receptor_input::comunicar_con_server(){
 	Socket socket(-1);
 	socket.Connect(ip,port);
 	while (!std::cin.eof()){

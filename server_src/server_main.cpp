@@ -13,7 +13,6 @@ int main(int argc,char* argv[]){
 	Server_Manager server(socket);
 	server.Guardar_Root(argv[2]);
 	server.start();
-	//sleep(30);
 	std::string user_input = "";
 	while (user_input != "q") {
 	    std::cin >> user_input;
