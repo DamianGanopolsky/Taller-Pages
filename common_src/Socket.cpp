@@ -84,6 +84,8 @@ Socket Socket::Accept(){
     int newFd = accept(fd, \
     		(struct sockaddr *)&address,&addressLength);
     if (newFd==-1){
+    	std::cout << "Largu excep" << std::endl;
+    //	return NULL;
     	throw SocketException("Listener cerrado \n");
     }
     inet_ntop(AF_INET, &(address.sin_addr), addressBuf, INET_ADDRSTRLEN);
