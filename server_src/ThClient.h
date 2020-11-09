@@ -12,17 +12,20 @@ class ThClient: public Thread{
 private:
 	Socket Peer;
 	std::unordered_map<std::string,std::string>& hash;
+	std::atomic<bool> is_dead;
 
 
 public:
 	ThClient(Socket peer,std::unordered_map<std::string,std::string>&\
-			hash_recursos):Peer(std::move(peer)),hash(hash_recursos)
+			hash_recursos):Peer(std::move(peer)),hash(hash_recursos),is_dead(false)
 			{
 	}
 
 	void send_answer(std::string server_answer);
 
 	void process_command(std::string input_client);
+
+	bool is_alive();
 
 	void run() override;
 

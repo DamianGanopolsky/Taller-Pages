@@ -44,6 +44,10 @@ void ThClient::process_command(std::string input_client){
 	this->send_answer(respuesta_al_cliente);
 }
 
+bool ThClient::is_alive(){
+	return !(is_dead);
+}
+
 
 void ThClient::run(){
 	ssize_t recibidos=1;
@@ -55,5 +59,6 @@ void ThClient::run(){
 		memset(buff,0,sizeof(buff));
 	}
 	this->process_command(input);
+	is_dead=true;
 }
 

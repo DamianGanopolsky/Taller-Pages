@@ -4,8 +4,8 @@
 #include "Client_manager.h"
 
 int main(int argc, char* argv[]){
-	Receptor_input receptor(argv[1],argv[2]);
-	receptor.enviar_al_server();
-	receptor.recibir_del_server();
+	Client_Manager client(argv[1],argv[2]);
+	client.enviar_al_server();
+	client.recibir_del_server();
 	return 0;
 }

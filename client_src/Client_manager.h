@@ -4,22 +4,21 @@
 #include "../common_src/Socket.h"
 
 
-class Receptor_input{
+class Client_Manager{
 private:
 	const char* ip;
 	const char* port;
 	Socket socket;
 
 public:
-	 Receptor_input(const char* ip_argv,const char* port_argv):\
+	 Client_Manager(const char* ip_argv,const char* port_argv):\
 	 ip(ip_argv),port(port_argv),socket(-1){
 	}
 	 void enviar_al_server();
 
 	 void recibir_del_server();
 
-
-	~Receptor_input();
+	~Client_Manager();
 };
 
 

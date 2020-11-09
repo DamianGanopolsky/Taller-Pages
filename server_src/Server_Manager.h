@@ -27,6 +27,8 @@ public:
 
 	void clean();
 
+	void clean_zombies();
+
 	void Receive_connections(const char* Port);
 
 	~Server_Manager();

@@ -8,8 +8,7 @@
 #include <string>
 #define TAMANIO_BUFFER 64
 
-void Receptor_input::enviar_al_server(){
-	//Socket socket(-1);
+void Client_Manager::enviar_al_server(){
 	socket.Connect(ip,port);
 	while (!std::cin.eof()){
 		char buffer[TAMANIO_BUFFER];
@@ -21,7 +20,7 @@ void Receptor_input::enviar_al_server(){
 }
 
 
-void Receptor_input::recibir_del_server(){
+void Client_Manager::recibir_del_server(){
 	ssize_t recibidos=1;
 	std::string output;
 	char buff[TAMANIO_BUFFER];
@@ -34,5 +33,5 @@ void Receptor_input::recibir_del_server(){
 	std::cout << output_sin_newline << std::endl;
 }
 
-Receptor_input::~Receptor_input(){
+Client_Manager::~Client_Manager(){
 }
