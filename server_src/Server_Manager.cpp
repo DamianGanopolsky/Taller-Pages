@@ -48,7 +48,6 @@ void Server_Manager::clean_zombies(){
 	for (std::vector<ThClient*>::iterator it = clients.begin();\
 		it != clients.end();) {
 		if (!(*it)->is_alive()) {
-			std::cout << "Borro un zombie" << std::endl;
 			(*it)->join();
 			delete *it;
 			cant_clientes--;
