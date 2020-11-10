@@ -4,7 +4,7 @@
 #include "Comando_Get.h"
 #include "Comando.h"
 
-void Monitor_Respuesta::Obtener_Respuesta(const std::tuple<std::string,\
+void Monitor_Respuesta::Respuesta_Servidor(const std::tuple<std::string,\
 		std::string,std::string>petitorio,std::string& respuesta_al_cliente){
 	m.lock();
 	if (std::get<0>(petitorio).compare("GET")==0){

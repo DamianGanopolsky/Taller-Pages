@@ -14,7 +14,7 @@ public:
 	protected_hash(hash_recursos){
 	}
 
-	void Obtener_Respuesta(const std::tuple<std::string,std::string,\
+	void Respuesta_Servidor(const std::tuple<std::string,std::string,\
 			std::string>petitorio,std::string& respuesta_al_cliente);
 
 	~Monitor_Respuesta();
