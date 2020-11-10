@@ -26,4 +26,4 @@ Adjunto los diagramas de clases correspondientes al diseño del servidor, ya que
 
 ![DiagramaClases1](DiagClases1.png)  
 
-![DiagramaClases2](DiagClases2.png)
+![DiagramaClases2](DiagClases2 .png)
