@@ -3,6 +3,8 @@
 #include "Comando_Post.h"
 #include "Comando_Get.h"
 #include "Comando.h"
+#include <tuple>
+#include <string>
 
 void Monitor_Respuesta::Respuesta_Servidor(const std::tuple<std::string,\
 		std::string,std::string>petitorio,std::string& respuesta_al_cliente){
@@ -22,7 +24,6 @@ void Monitor_Respuesta::Respuesta_Servidor(const std::tuple<std::string,\
 
 
 Monitor_Respuesta::~Monitor_Respuesta(){
-
 }
 
 

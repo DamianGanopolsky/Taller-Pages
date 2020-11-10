@@ -30,7 +30,6 @@ public:
 	bool is_alive();
 
 	void run() override;
-
 };
 
 

@@ -12,7 +12,6 @@ public:
 	}
 
 	 explicit Socket(int i):fd(i){
-
 	 }
 
 	 void Connect(const char *host, const char *service);

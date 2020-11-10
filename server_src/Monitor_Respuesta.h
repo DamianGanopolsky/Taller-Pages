@@ -2,6 +2,8 @@
 #define SERVER_SRC_MONITOR_RESPUESTA_H_
 #include <unordered_map>
 #include <mutex>
+#include <tuple>
+#include <string>
 
 
 class Monitor_Respuesta{
@@ -10,8 +12,8 @@ private:
 	std::mutex m;
 
 public:
-	Monitor_Respuesta(std::unordered_map<std::string, std::string>& hash_recursos):\
-	protected_hash(hash_recursos){
+	explicit Monitor_Respuesta(std::unordered_map<std::string, std::string>&\
+			hash_recursos):protected_hash(hash_recursos){
 	}
 
 	void Respuesta_Servidor(const std::tuple<std::string,std::string,\
