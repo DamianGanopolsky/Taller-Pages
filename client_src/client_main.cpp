@@ -1,6 +1,3 @@
-#include <iostream>
-#include <sstream>
-#include <string>
 #include "Client_manager.h"
 
 int main(int argc, char* argv[]){

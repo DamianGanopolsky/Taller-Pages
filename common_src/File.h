@@ -15,6 +15,9 @@ public:
 	explicit File(const std::string &file_name){
 		inputFile = new std::ifstream;
 		inputFile->open(file_name, std::ios::in);
+		if(!inputFile){
+			throw "Error al abrir el archivo";
+		}
 	}
 
 	int longitud_archivo();

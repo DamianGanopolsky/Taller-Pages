@@ -5,17 +5,20 @@
 
 class Parser{
 private:
-	std::string &texto;
+	const std::string &texto;
 
-	void Obtener_Key_Recurso(std::string& linea,std::string& recurso);
+	void Obtener_Key_Recurso(const std::string& linea,std::string& recurso);
 
-	void Obtener_Cabecera(std::string& linea,\
+	void Obtener_Cabecera(const std::string& linea,\
 			std::string& tipo_petitorio,std::string& resource);
 
 public:
-	explicit Parser(std::string &Linea):texto(Linea){
+	explicit Parser(const std::string &Linea):texto(Linea){
 	}
 
+	//La tupla a devolver contendra como primer valor el tipo
+	//de comando, seguido del recurso al que se refiere y por ultimo
+	//contendra el cuerpo del mensaje.
 	std::tuple<std::string,std::string,std::string> Parsear_Archivo();
 
 	~Parser();

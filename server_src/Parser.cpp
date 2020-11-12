@@ -4,7 +4,7 @@
 #define HEADER_LINE 2
 #define BODY_LINE 3
 
-void Parser::Obtener_Key_Recurso(std::string& linea,std::string& recurso){
+void Parser::Obtener_Key_Recurso(const std::string& linea,std::string& recurso){
 	std::string subline_res=linea.substr(linea.find('/'));
 	if(subline_res.at(1)==' '){
 		recurso="/";
@@ -13,7 +13,7 @@ void Parser::Obtener_Key_Recurso(std::string& linea,std::string& recurso){
 	}
 }
 
-void Parser::Obtener_Cabecera(std::string& linea,\
+void Parser::Obtener_Cabecera(const std::string& linea,\
 		std::string& tipo_petitorio,std::string& resource){
 	if (linea.find("GET")!= std::string::npos){
 		tipo_petitorio="GET";

@@ -24,6 +24,9 @@ void ThClient::process_command(std::string input_client){
 	std::string primera_linea=input_client.substr(0,input_client.find("\n"));
 	std::cout << primera_linea << std::endl;
 	Parser parser(input_client);
+	//La tupla datos_petitorio, contendra como primer valor el tipo
+	//de comando, seguido del recurso al que se refiere y por ultimo
+	//contendra el cuerpo del mensaje.
 	auto datos_petitorio=parser.Parsear_Archivo();
 	std::string respuesta_al_cliente;
 	monitor.Respuesta_Servidor(datos_petitorio, respuesta_al_cliente);
@@ -38,7 +41,7 @@ bool ThClient::is_alive(){
 void ThClient::run(){
 	ssize_t recibidos=1;
 	char buff[TAMANIO_BUFFER];
-	std::string input;
+	std::string input; //Input contendra el mensaje completo enviado por el cliente
 	while (recibidos!=0){
 		recibidos=Peer.Receive(buff,TAMANIO_BUFFER);
 		input.append(buff,recibidos);

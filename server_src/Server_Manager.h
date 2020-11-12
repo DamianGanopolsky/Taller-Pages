@@ -24,10 +24,14 @@ public:
 
 	void run() override;
 
+	//SObrecarga del operador (), requisito de la entrega
 	void operator()();
 
+	//Guarda el archivo que se correspondera con el recurso "/"
 	void Guardar_Root(const std::string& FileName);
 
+	//Este metodo sera llamado por el hilo de server_main, se busca
+	//que se termine la ejecucion de los distintos hilos correctamente
 	void stop_running();
 
 	~Server_Manager();

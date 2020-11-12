@@ -27,6 +27,8 @@ public:
 			monitor(hash_recursos){
 	}
 
+	//Devuelve si se sigue ejecutando el hilo o no, se usa para que
+	//la clase llamadora sepa si esta en modo zombie el hilo
 	bool is_alive();
 
 	void run() override;
