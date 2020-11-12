@@ -1,9 +1,0 @@
-HTTP/1.1 200 OK
-
-<!DOCTYPE html>
-<html>
-	<head></head>
-	<body>
-		<h1>Mi recurso test</h1>
-	</body>
-</html>
