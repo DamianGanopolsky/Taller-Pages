@@ -5,7 +5,7 @@
 #include "Comando.h"
 #include <tuple>
 #include <string>
-#define COMANDO 1
+#define COMANDO 0
 
 void Monitor_Respuesta::Respuesta_Servidor(const std::tuple<std::string,\
 		std::string,std::string>petitorio,std::string& respuesta_al_cliente){
