@@ -16,16 +16,16 @@ private:
 	std::atomic<bool> is_dead;
 	Monitor_Respuesta monitor;
 
+	void send_answer(std::string server_answer);
+
+	void process_command(std::string input_client);
+
 
 public:
 	ThClient(Socket peer,std::unordered_map<std::string,std::string>&\
 			hash_recursos):Peer(std::move(peer)),hash(hash_recursos),is_dead(false),\
 			monitor(hash_recursos){
 	}
-
-	void send_answer(std::string server_answer);
-
-	void process_command(std::string input_client);
 
 	bool is_alive();
 

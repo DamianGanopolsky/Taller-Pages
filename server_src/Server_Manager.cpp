@@ -13,7 +13,7 @@ void Server_Manager::operator()(){
 	start();
 }
 
-void Server_Manager::Guardar_Root(std::string FileName){
+void Server_Manager::Guardar_Root(const std::string& FileName){
 	File archivo(FileName);
 	int longitud_archivo=archivo.longitud_archivo();
 	std::string cuerpo;

@@ -14,6 +14,8 @@ private:
 	Socket listener;
 	int cant_clientes;
 
+	void clean_zombies();
+
 public:
 	explicit Server_Manager(Socket sock):listener(std::move(sock)),\
 	cant_clientes(0){
@@ -24,11 +26,9 @@ public:
 
 	void operator()();
 
-	void Guardar_Root(std::string FileName);
+	void Guardar_Root(const std::string& FileName);
 
 	void stop_running();
-
-	void clean_zombies();
 
 	~Server_Manager();
 };
