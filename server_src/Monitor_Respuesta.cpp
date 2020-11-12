@@ -8,7 +8,7 @@
 
 void Monitor_Respuesta::Respuesta_Servidor(const std::tuple<std::string,\
 		std::string,std::string>petitorio,std::string& respuesta_al_cliente){
-	m.lock();
+	std::unique_lock<std::mutex> lock(m);
 	if (std::get<0>(petitorio).compare("GET")==0){
 		Comando_Get comando_get(petitorio,protected_hash);
 		respuesta_al_cliente=comando_get.Obtener_Respuesta();
@@ -19,7 +19,6 @@ void Monitor_Respuesta::Respuesta_Servidor(const std::tuple<std::string,\
 		Otro_Comando otro_comando(petitorio,protected_hash);
 		respuesta_al_cliente=otro_comando.Obtener_Respuesta();
 	}
-	m.unlock();
 }
 
 
