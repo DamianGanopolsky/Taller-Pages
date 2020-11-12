@@ -1,28 +1,20 @@
 #ifndef COMMON_SRC_SOCKET_H_
 #define COMMON_SRC_SOCKET_H_
 #include <sys/types.h>
-#define FILE_DESCRIPTOR_INVALIDO -1
+#define INVALID_FD -1
 
 class Socket{
 private:
 	int fd;
 
 public:
-	 Socket():fd(FILE_DESCRIPTOR_INVALIDO){
+	//Constructor por default si no me pasan ningun fd
+	 Socket():fd(INVALID_FD){
 	}
 
+	 //Constructor si me pasan un fd como parametro
 	 explicit Socket(int i):fd(i){
 	 }
-
-	 void Connect(const char *host, const char *service);
-
-	 void Bind_And_Listen(const char *host,const char *service);
-
-	 ssize_t Send(char *buffer, size_t length);
-
-	 ssize_t Receive(char *buffer, size_t length);
-
-	 Socket Accept();
 
 	 /* LO MARCO COMO NO COPIABLE */
 
@@ -36,9 +28,19 @@ public:
 
 	 Socket &operator=(Socket &&other);
 
+	 void Connect(const char *host, const char *service);
+
+	 void Bind_And_Listen(const char *host,const char *service);
+
+	 Socket Accept();
+
+	 ssize_t Send(char *buffer, size_t length);
+
+	 ssize_t Receive(char *buffer, size_t length);
+
 	 void Close();
 
-	 void Shutdown(int RD_WR);
+	 void Shutdown(int canal);
 
 	 void setToInvalidFd();
 

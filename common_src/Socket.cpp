@@ -1,5 +1,6 @@
 #define _POSIX_C_SOURCE 200112L
 #define LONGITUD_COLA 10
+#define INVALID_FD -1
 #include "Socket.h"
 #include <errno.h>
 #include <string.h>
@@ -11,6 +12,18 @@
 #include "Socket_exception.h"
 #include <iostream>
 
+//Move semantics
+Socket::Socket(Socket &&other) {
+    this->fd = other.fd;
+    other.fd = INVALID_FD;
+}
+
+//Move semantics
+Socket &Socket::operator=(Socket &&other) {
+    this->fd = other.fd;
+    other.fd = INVALID_FD;
+    return *this;
+}
 
 
 void Socket::Connect(const char *host, const char *service){
@@ -29,7 +42,7 @@ void Socket::Connect(const char *host, const char *service){
     }
     for (rp = result; rp != NULL; rp = rp->ai_next) {
     	socketfd = socket(rp->ai_family, rp->ai_socktype,rp->ai_protocol);
-        if (socketfd == -1)
+        if (socketfd == INVALID_FD)
         	continue;
         if (connect(socketfd, rp->ai_addr, rp->ai_addrlen) != -1)
         	break;
@@ -61,7 +74,7 @@ void Socket::Bind_And_Listen(const char *host,const char *service){
     for (rp = result; rp != NULL; rp = rp->ai_next) {
     	fdscriptor = socket(rp->ai_family,rp->ai_socktype,rp->ai_protocol);
     	setsockopt(fdscriptor,SOL_SOCKET,SO_REUSEADDR,&val_opt,sizeof(val_opt));
-        if (fdscriptor == -1)
+        if (fdscriptor == INVALID_FD)
             continue;
         if (bind(fdscriptor, rp->ai_addr, rp->ai_addrlen) == 0)
             break;                  /* Success */
@@ -101,22 +114,6 @@ ssize_t Socket::Send(char* buffer, size_t length){
     	// Si caracteres enviados=-1, hubo un error en el intento de envio
         if (caracteres_enviados==-1){
         	printf("Error al leer %s\n", strerror(errno));
-        	if (errno==EACCES){
-        		fprintf(stderr,\
-        				"No esta permitida la escritura en el fd de destino\n");
-        	}else if (errno==EAGAIN){
-        		fprintf(stderr,"El socket no esta ligado a una direccion \n");
-        	}else if (errno==EBADF){
-        		fprintf(stderr,"sockfd no es un file descriptor valido\n");
-        	}else if (errno==ENOTCONN){
-        		fprintf(stderr,"The socket is not connected\n");
-        	}else if (errno==EDESTADDRREQ){
-        		fprintf(stderr,"The socket is not connection-mode,\n");
-        	}else if (errno==ECONNRESET){
-        		fprintf(stderr,"Connection reset by peer,\n");
-        	}else{
-        		fprintf(stderr,"Error al enviar \n");
-        	}
         	break;
         }
         puntero_a_caracter_actual=caracteres_enviados+puntero_a_caracter_actual;
@@ -150,39 +147,31 @@ ssize_t Socket::Receive(char *buffer, size_t length){
 	return length-longitud_restante;
 }
 
-void Socket::Close(){
-	close(fd);
+void Socket::setToInvalidFd(){
+	fd=INVALID_FD;
 }
 
-void Socket::Shutdown(int RD_WR){
-	if(RD_WR==0){
+
+void Socket::Shutdown(int canal){
+	if(canal==0){
 		shutdown(fd,SHUT_RD);
 	}
-	if(RD_WR==1){
+	if(canal==1){
 		shutdown(fd,SHUT_WR);
 	}
-	if(RD_WR==2){
+	if(canal==2){
 		shutdown(fd,SHUT_RDWR);
 	}
 }
 
-Socket::Socket(Socket &&other) {
-    this->fd = other.fd;
-    other.fd = -1;
+
+void Socket::Close(){
+	close(fd);
 }
 
-Socket &Socket::operator=(Socket &&other) {
-    this->fd = other.fd;
-    other.fd = -1;
-    return *this;
-}
-
-void Socket::setToInvalidFd(){
-	fd=-1;
-}
 
 Socket::~Socket(){
-	if(fd!=-1){
+	if(fd!=INVALID_FD){
 		shutdown(fd,SHUT_RDWR);
 		close(fd);
 	}
