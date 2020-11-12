@@ -1,7 +1,5 @@
 #ifndef COMMON_SRC_FILE_H_
 #define COMMON_SRC_FILE_H_
-
-#include <iostream>
 #include <fstream>
 #include <string>
 
@@ -18,7 +16,6 @@ public:
 		inputFile = new std::ifstream;
 		inputFile->open(file_name, std::ios::in);
 	}
-	//std::string getLine();
 
 	int longitud_archivo();
 

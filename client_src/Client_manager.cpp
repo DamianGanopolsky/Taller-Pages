@@ -1,10 +1,8 @@
 #include "Client_manager.h"
+#include "../common_src/Socket.h"
 #include <iostream>
 #include <sstream>
-#include "../common_src/Socket.h"
-#include <sstream>
 #include <cstring>
-#include <fstream>
 #include <string>
 #define TAMANIO_BUFFER 64
 #define SHUT_WR 1

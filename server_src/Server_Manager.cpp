@@ -1,13 +1,6 @@
 #include "Server_Manager.h"
 #include "../common_src/File.h"
 #include "../common_src/Socket.h"
-#include "Parser.h"
-#include "Otro_Comando.h"
-#include "Comando_Post.h"
-#include "Comando_Get.h"
-#include "Comando.h"
-#include <cstring>
-#include <tuple>
 #include <sstream>
 #include <vector>
 #include <utility>

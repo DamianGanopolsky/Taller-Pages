@@ -1,10 +1,5 @@
 #include "ThClient.h"
 #include "Parser.h"
-#include "Otro_Comando.h"
-#include "Comando_Post.h"
-#include "Comando_Get.h"
-#include "Comando.h"
-#include "Parser.h"
 #include <iostream>
 #include <cstring>
 #include <sstream>

@@ -1,5 +1,4 @@
 #include "Comando_Get.h"
-#include <iostream>
 #include <string>
 
 std::string Comando_Get::Obtener_Respuesta(){
