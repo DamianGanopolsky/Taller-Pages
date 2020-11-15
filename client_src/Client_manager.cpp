@@ -20,7 +20,6 @@ void Client_Manager::enviar_al_server(){
 
 void Client_Manager::recibir_del_server(){
 	ssize_t recibidos=1;
-	std::string output;
 	char buff[TAMANIO_BUFFER];
 	while (recibidos!=0){
 		recibidos=socket.Receive(buff,TAMANIO_BUFFER);
