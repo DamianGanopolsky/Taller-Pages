@@ -21,8 +21,8 @@ void ThClient::send_answer(const std::string& server_answer){
 
 
 void ThClient::process_command(const std::string& input_client){
-	std::string primera_linea=input_client.substr(0,input_client.find("\n"));
-	std::cout << primera_linea << std::endl;
+	std::string primera_linea=input_client.substr(0,input_client.find("\n")+1);
+	std::cout << primera_linea;
 	Parser parser(input_client);
 	//La tupla datos_petitorio, contendra como primer valor el tipo
 	//de comando, seguido del recurso al que se refiere y por ultimo
