@@ -37,8 +37,7 @@ void Socket::Connect(const char *host, const char *service){
     hints.ai_protocol = 0;
     codigo_getaddrinfo = getaddrinfo(host, service, &hints, &result);
     if (codigo_getaddrinfo != 0) {
-    	fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(codigo_getaddrinfo));
-    	return;
+    	throw SocketException("Error en getaddrinfo \n");
     }
     for (rp = result; rp != NULL; rp = rp->ai_next) {
     	socketfd = socket(rp->ai_family, rp->ai_socktype,rp->ai_protocol);
@@ -51,8 +50,7 @@ void Socket::Connect(const char *host, const char *service){
     fd=socketfd;
     freeaddrinfo(result);
     if (rp == NULL) {
-    	fprintf(stderr, "No se pudo conectar\n");
-    	return;
+    	throw SocketException("No se pudo conectar \n");
     }
 }
 
@@ -81,8 +79,7 @@ void Socket::Bind_And_Listen(const char *host,const char *service){
         close(fdscriptor);
     }
     if (rp == NULL) {               /* No address succeeded */
-        fprintf(stderr, "No se pudo hacer el bind\n");
-        return;
+    	throw SocketException("No se pudo hacer el bind\n");
     }
     freeaddrinfo(result);
     listen(fdscriptor, LONGITUD_COLA);
@@ -113,8 +110,8 @@ ssize_t Socket::Send(char* buffer, size_t length){
     			,longitud_restante,MSG_NOSIGNAL);
     	// Si caracteres enviados=-1, hubo un error en el intento de envio
         if (caracteres_enviados==-1){
-        	printf("Error al leer %s\n", strerror(errno));
-        	break;
+        	std::cout << strerror(errno) << std::endl;
+        	throw SocketException("Error al leer \n");
         }
         puntero_a_caracter_actual=puntero_a_caracter_actual+caracteres_enviados;
         longitud_restante=longitud_restante-caracteres_enviados;
@@ -134,8 +131,7 @@ ssize_t Socket::Receive(char *buffer, size_t length){
 				,longitud_restante,0);
 		//Si es -1, hubo un error al recibir
 		if (caracteres_recibidos==-1){
-			fprintf(stderr,"Error al recibir \n");
-			break;
+			throw SocketException("Error al recibir \n");
 		}else if (caracteres_recibidos==0){//Si es 0, llegue al "
 			return length-longitud_restante; // end of file", paro de recibir
 		}else{

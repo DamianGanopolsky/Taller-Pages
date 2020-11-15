@@ -8,6 +8,12 @@ private:
 
 public:
     explicit SocketException(const std::string& message);
+
+    const char* what() const throw() {
+        return msg_.c_str();
+    }
+
+
 };
 
 
