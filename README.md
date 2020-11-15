@@ -24,6 +24,8 @@ Los datos se fueron enviando usando buffers de 64 Bytes, y el servidor para cada
 ### Diagrama de clases
 Adjunto los diagramas de clases correspondientes al diseño del servidor, ya que, en este tp el cliente tuvo muy poca responsabilidad y es bastante trivial su diseño.  
 
+En este primer diagrama se puede ver un esquema general del programa, dejando de lado ciertas clases de mas bajo nivel
 ![DiagramaClases1](DiagClases1.png)  
 
+En este segundo diagrama se puede ver al monitor encargado de proteger los recursos, y la obtencion de la respuesta para el cliente. Si bien, en C++ no existen "interfaces" Comando es una clase abstracta sin niguna implementacion de metodos, por lo que se puede considerar a tal como una interfaz.
 ![DiagramaClases2](DiagClases2.png)
