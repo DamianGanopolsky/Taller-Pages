@@ -12,7 +12,7 @@ private:
 	File& operator=(const File &other) = delete;
 
 public:
-	explicit File(std::string &file_name){
+	explicit File(const std::string &file_name){
 		inputFile = new std::ifstream;
 		inputFile->open(file_name, std::ios::in);
 		//inputFile(file_name);
