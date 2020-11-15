@@ -17,8 +17,9 @@ private:
 	void clean_zombies();
 
 public:
-	explicit Server_Manager(Socket sock):listener(std::move(sock)),\
+	explicit Server_Manager(const char* service):\
 	cant_clientes(0){
+		listener.Bind_And_Listen(NULL,service);
 		clients.clear();
 	}
 
