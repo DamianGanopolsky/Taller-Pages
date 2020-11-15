@@ -5,6 +5,7 @@
 #include <vector>
 #include <utility>
 #include "ThClient.h"
+#include "Monitor_Respuesta.h"
 
 class Server_Manager: public Thread{
 private:
@@ -13,12 +14,13 @@ private:
 	std::vector<ThClient*> clients;
 	Socket listener;
 	int cant_clientes;
+	Monitor_Respuesta monitor;
 
 	void clean_zombies();
 
 public:
 	explicit Server_Manager(const char* service):\
-	cant_clientes(0){
+	cant_clientes(0),monitor(hash_recursos){
 		listener.Bind_And_Listen(NULL,service);
 		clients.clear();
 	}

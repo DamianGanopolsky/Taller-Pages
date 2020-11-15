@@ -15,9 +15,7 @@ void Server_Manager::operator()(){
 
 void Server_Manager::Guardar_Root(const std::string& FileName){
 	File archivo(FileName);
-	//int longitud_archivo=archivo.longitud_archivo();
 	std::string cuerpo;
-	//cuerpo.reserve(longitud_archivo);
 	archivo.Assign(cuerpo);
 	hash_recursos["/"]=cuerpo;
 }
@@ -33,7 +31,7 @@ void Server_Manager::run(){
 			break;
 		}
 		cant_clientes++;
-		ThClient* client= new ThClient(std::move(peer),hash_recursos);
+		ThClient* client= new ThClient(std::move(peer),monitor);
 		clients.push_back(client);
 		client->start();
 		clean_zombies();

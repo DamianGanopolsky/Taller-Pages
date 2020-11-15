@@ -12,9 +12,8 @@
 class ThClient: public Thread{
 private:
 	Socket Peer;
-	std::unordered_map<std::string,std::string>& hash;
+	Monitor_Respuesta& monitor;
 	std::atomic<bool> is_dead;
-	Monitor_Respuesta monitor;
 
 	void send_answer(const std::string& server_answer);
 
@@ -22,9 +21,8 @@ private:
 
 
 public:
-	ThClient(Socket peer,std::unordered_map<std::string,std::string>&\
-			hash_recursos):Peer(std::move(peer)),hash(hash_recursos),is_dead(false),\
-			monitor(hash_recursos){
+	ThClient(Socket peer,Monitor_Respuesta& monitor_):Peer(std::move(peer))\
+	,monitor(monitor_),is_dead(false){
 	}
 
 	//Devuelve si se sigue ejecutando el hilo o no, se usa para que
