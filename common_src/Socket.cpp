@@ -88,15 +88,10 @@ void Socket::Bind_And_Listen(const char *host,const char *service){
 
 
 Socket Socket::Accept(){
-    char addressBuf[INET_ADDRSTRLEN];
-    struct sockaddr_in address;
-    socklen_t addressLength = (socklen_t) sizeof(address);
-    int newFd = accept(fd, \
-    		(struct sockaddr *)&address,&addressLength);
+    int newFd = accept(fd,NULL,NULL);
     if (newFd==-1){
     	throw SocketException("Listener cerrado \n");
     }
-    inet_ntop(AF_INET, &(address.sin_addr), addressBuf, INET_ADDRSTRLEN);
     return Socket(newFd);
 }
 
