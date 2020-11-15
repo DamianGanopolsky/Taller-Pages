@@ -8,7 +8,7 @@
 #define CERRAR_RD_WR 2
 
 
-void ThClient::send_answer(std::string server_answer){
+void ThClient::send_answer(const std::string& server_answer){
 	std::istringstream iss(server_answer);
 	while (!iss.eof()){
 		char buffer[TAMANIO_BUFFER];
@@ -20,7 +20,7 @@ void ThClient::send_answer(std::string server_answer){
 }
 
 
-void ThClient::process_command(std::string input_client){
+void ThClient::process_command(const std::string& input_client){
 	std::string primera_linea=input_client.substr(0,input_client.find("\n"));
 	std::cout << primera_linea << std::endl;
 	Parser parser(input_client);

@@ -1,8 +1,6 @@
 #include <iostream>
 #include "../common_src/Socket.h"
 #include "Server_Manager.h"
-#define CLOSED_FD -1
-#define CERRAR_RD_WR 2
 #define ERROR 1
 #define EXITO 0
 

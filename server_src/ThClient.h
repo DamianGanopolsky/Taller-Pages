@@ -16,9 +16,9 @@ private:
 	std::atomic<bool> is_dead;
 	Monitor_Respuesta monitor;
 
-	void send_answer(std::string server_answer);
+	void send_answer(const std::string& server_answer);
 
-	void process_command(std::string input_client);
+	void process_command(const std::string& input_client);
 
 
 public:

@@ -20,9 +20,9 @@ public:
 		}
 	}
 
-	int longitud_archivo();
+	//int longitud_archivo();
 
-	void Asign(std::string &cuerpo);
+	void Assign(std::string &cuerpo);
 
 	//Devuelve true si se encuentra en el fin de archivo, y devuelve false en
 	//el caso de que no se encuentre en el final

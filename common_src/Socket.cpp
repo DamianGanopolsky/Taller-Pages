@@ -116,7 +116,7 @@ ssize_t Socket::Send(char* buffer, size_t length){
         	printf("Error al leer %s\n", strerror(errno));
         	break;
         }
-        puntero_a_caracter_actual=caracteres_enviados+puntero_a_caracter_actual;
+        puntero_a_caracter_actual=puntero_a_caracter_actual+caracteres_enviados;
         longitud_restante=longitud_restante-caracteres_enviados;
     }
     return longitud_restante;
@@ -139,8 +139,9 @@ ssize_t Socket::Receive(char *buffer, size_t length){
 		}else if (caracteres_recibidos==0){//Si es 0, llegue al "
 			return length-longitud_restante; // end of file", paro de recibir
 		}else{
-	        puntero_a_caracter_actual=caracteres_recibidos\
-	        		+puntero_a_caracter_actual;
+	        puntero_a_caracter_actual=puntero_a_caracter_actual\
+	        		+caracteres_recibidos;
+
 	        longitud_restante=longitud_restante-caracteres_recibidos;
 		}
 	}

@@ -15,10 +15,10 @@ void Server_Manager::operator()(){
 
 void Server_Manager::Guardar_Root(const std::string& FileName){
 	File archivo(FileName);
-	int longitud_archivo=archivo.longitud_archivo();
+	//int longitud_archivo=archivo.longitud_archivo();
 	std::string cuerpo;
-	cuerpo.reserve(longitud_archivo);
-	archivo.Asign(cuerpo);
+	//cuerpo.reserve(longitud_archivo);
+	archivo.Assign(cuerpo);
 	hash_recursos["/"]=cuerpo;
 }
 
