@@ -6,21 +6,21 @@
 
 class File{
 private:
-	std::ifstream *inputFile;
+	std::ifstream* inputFile;
 	//Lo marco como no copiable a File
 	File(const File &other) = delete;
 	File& operator=(const File &other) = delete;
 
 public:
-	explicit File(const std::string &file_name){
+	explicit File(std::string &file_name){
 		inputFile = new std::ifstream;
 		inputFile->open(file_name, std::ios::in);
+		//inputFile(file_name);
 		if(!inputFile){
 			throw "Error al abrir el archivo";
 		}
 	}
 
-	//int longitud_archivo();
 
 	void Assign(std::string &cuerpo);
 

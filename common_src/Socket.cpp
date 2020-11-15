@@ -33,7 +33,7 @@ void Socket::Connect(const char *host, const char *service){
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
-    hints.ai_flags = 0;
+    hints.ai_flags = AI_PASSIVE;
     hints.ai_protocol = 0;
     codigo_getaddrinfo = getaddrinfo(host, service, &hints, &result);
     if (codigo_getaddrinfo != 0) {
@@ -154,15 +154,7 @@ void Socket::setToInvalidFd(){
 
 
 void Socket::Shutdown(int canal){
-	if(canal==0){
-		shutdown(fd,SHUT_RD);
-	}
-	if(canal==1){
-		shutdown(fd,SHUT_WR);
-	}
-	if(canal==2){
-		shutdown(fd,SHUT_RDWR);
-	}
+	shutdown(fd,canal);
 }
 
 
