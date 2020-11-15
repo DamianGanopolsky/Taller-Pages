@@ -24,11 +24,9 @@ void Client_Manager::recibir_del_server(){
 	char buff[TAMANIO_BUFFER];
 	while (recibidos!=0){
 		recibidos=socket.Receive(buff,TAMANIO_BUFFER);
-		output.append(buff,recibidos);
+		fwrite(buff,1,recibidos,stdout);
 		memset(buff,0,sizeof(buff));
 	}
-	std::string output_sin_newline=output.substr(0, output.size()-1);
-	std::cout << output_sin_newline << std::endl;
 }
 
 Client_Manager::~Client_Manager(){
