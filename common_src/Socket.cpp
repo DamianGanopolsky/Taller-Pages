@@ -96,47 +96,44 @@ Socket Socket::Accept(){
 }
 
 ssize_t Socket::Send(char* buffer, size_t length){
-	ssize_t longitud_restante=length;
+	size_t total_bytes_enviados=0;
 	char* puntero_a_caracter_actual=buffer;
 
-    while (longitud_restante>0){
+    while (total_bytes_enviados<length){
     	ssize_t caracteres_enviados;
     	caracteres_enviados=send(fd,puntero_a_caracter_actual\
-    			,longitud_restante,MSG_NOSIGNAL);
+    			,length-total_bytes_enviados,MSG_NOSIGNAL);
     	// Si caracteres enviados=-1, hubo un error en el intento de envio
         if (caracteres_enviados==-1){
         	std::cout << strerror(errno) << std::endl;
         	throw SocketException("Error al leer \n");
         }
         puntero_a_caracter_actual=puntero_a_caracter_actual+caracteres_enviados;
-        longitud_restante=longitud_restante-caracteres_enviados;
+        total_bytes_enviados=total_bytes_enviados+caracteres_enviados;
     }
-    return longitud_restante;
+    return total_bytes_enviados;
 }
 
 
 ssize_t Socket::Receive(char *buffer, size_t length){
-	ssize_t longitud_restante=length;
+	size_t total_bytes_recibidos=0;
 	char* puntero_a_caracter_actual=buffer;
-
-	while (longitud_restante>0){
+	while (total_bytes_recibidos<length){
 		ssize_t caracteres_recibidos;
-
 		caracteres_recibidos=recv(fd,puntero_a_caracter_actual\
-				,longitud_restante,0);
+				,length-total_bytes_recibidos,0);
 		//Si es -1, hubo un error al recibir
 		if (caracteres_recibidos==-1){
 			throw SocketException("Error al recibir \n");
 		}else if (caracteres_recibidos==0){//Si es 0, llegue al "
-			return length-longitud_restante; // end of file", paro de recibir
+			return total_bytes_recibidos; // end of file", paro de recibir
 		}else{
 	        puntero_a_caracter_actual=puntero_a_caracter_actual\
 	        		+caracteres_recibidos;
-
-	        longitud_restante=longitud_restante-caracteres_recibidos;
+	        total_bytes_recibidos=total_bytes_recibidos+caracteres_recibidos;
 		}
 	}
-	return length-longitud_restante;
+	return total_bytes_recibidos;
 }
 
 void Socket::setToInvalidFd(){
