@@ -29,3 +29,10 @@ En este primer diagrama se puede ver un esquema general del programa, dejando de
 
 En este segundo diagrama se puede ver al monitor encargado de proteger los recursos, y la obtencion de la respuesta para el cliente. Si bien, en C++ no existen "interfaces" Comando es una clase abstracta sin niguna implementacion de metodos, por lo que se puede considerar a tal como una interfaz.
 ![DiagramaClases2](DiagClases2.png)
+
+
+### Diagrama de secuencia
+
+Adjunto el diagrama de secuencia correspondiente a las acciones que se realizan luego del ingresado de la letra 'q' por entrada estandar  
+
+![DiagramaSecuencia](Diagrama_secuencia.png)
