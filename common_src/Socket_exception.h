@@ -8,15 +8,7 @@ private:
 
 public:
     explicit SocketException(const std::string& message);
-
-    const char* what() const throw() {
-        return msg_.c_str();
-    }
-
-
 };
-
-
 
 
 #endif /* COMMON_SRC_SOCKET_EXCEPTION_H_ */
