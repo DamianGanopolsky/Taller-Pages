@@ -7,11 +7,11 @@ private:
     std::string msg_;
 
 public:
-    explicit SocketException(const std::string& message);
-
-    const char* what() const throw() {
+    /*const char* what() const throw() {
             return msg_.c_str();
-    }
+    }*/
+
+    explicit SocketException(const std::string& message);
 };
 
 

@@ -7,9 +7,12 @@ private:
     std::string msg_;
 
 public:
-    const char* what() const throw() {
+    //Cppcheck arroja un falso positivo, "the function what
+    // is never used" pero en realidad si se usa, solo cuando
+    //hay una excepcion, sirve para dar un mensaje acerca de lo que paso
+    /*const char* what() const throw() {
     	return msg_.c_str();
-    }
+    }*/
 
     explicit FileException(const std::string& message);
 };
