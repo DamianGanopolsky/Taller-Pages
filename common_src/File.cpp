@@ -1,9 +1,9 @@
 #include "File.h"
 #include <string>
 
-bool File::end() const{
-	return inputFile->eof();
-}
+//bool File::end() const{
+	//return inputFile->eof();
+//}
 
 void File::Assign(std::string &cuerpo){
 	cuerpo.assign((std::istreambuf_iterator<char>(*inputFile)),

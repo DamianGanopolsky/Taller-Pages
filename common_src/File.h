@@ -25,7 +25,7 @@ public:
 
 	//Devuelve true si se encuentra en el fin de archivo, y devuelve false en
 	//el caso de que no se encuentre en el final
-	bool end() const;
+	//bool end() const;
 
 	~File();
 };

@@ -8,6 +8,8 @@ private:
 
 public:
     explicit SocketException(const std::string& message);
+
+    virtual const char* what() const noexcept;
 };
 
 

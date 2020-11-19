@@ -5,6 +5,7 @@
 #include <vector>
 #include <utility>
 #include "../common_src/Socket_exception.h"
+#include "../common_src/File_exception.h"
 #define TAMANIO_BUFFER 64
 #define CLOSED_FD -1
 #define CERRAR_RD_WR 2
@@ -14,10 +15,16 @@ void Server_Manager::operator()(){
 }
 
 void Server_Manager::Guardar_Root(const std::string& FileName){
-	File archivo(FileName);
+	std::ifstream ifs;
+	ifs.open(FileName);
+	if(!ifs){
+		throw FileException("Error al leer el archivo \n");
+	}
 	std::string cuerpo;
-	archivo.Assign(cuerpo);
+	cuerpo.assign((std::istreambuf_iterator<char>(ifs)),
+		            std::istreambuf_iterator<char>());
 	hash_recursos["/"]=cuerpo;
+	ifs.close();
 }
 
 
