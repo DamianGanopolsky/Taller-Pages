@@ -9,7 +9,9 @@ private:
 public:
     explicit SocketException(const std::string& message);
 
-    virtual const char* what() const noexcept;
+    const char* what() const throw() {
+            return msg_.c_str();
+    }
 };
 
 

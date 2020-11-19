@@ -7,9 +7,11 @@ private:
     std::string msg_;
 
 public:
-    explicit FileException(const std::string& message);
+    const char* what() const throw() {
+    	return msg_.c_str();
+    }
 
-    virtual const char* what() const noexcept;
+    explicit FileException(const std::string& message);
 };
 
 #endif /* COMMON_SRC_FILE_EXCEPTION_H_ */
