@@ -46,7 +46,7 @@ Adjunto el diagrama de secuencia correspondiente a las acciones que se realizan 
 
 - Issue #2: No me lo retorna, segui la documentacion en http://www.cplusplus.com/reference/istream/istream/read/ y obtuve los caracteres leidos llamando a gcount.
 
-- Issue #3: En vez de ir appendeando en una string del lado del cliente, imprimo la respuesta que voy recibiendo del servidor de a bloques
+- Issue #3: En vez de ir appendeando en una string del lado del cliente para despues mostrar dicha string, imprimo la respuesta que voy recibiendo del servidor de a bloques
 
 - Issue #4: Dejo de eliminar los saltos de linea porque no hacia falta(en Client_Manager.cpp)
 
