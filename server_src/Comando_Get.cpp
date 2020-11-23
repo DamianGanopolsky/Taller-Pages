@@ -11,8 +11,8 @@ std::string Comando_Get::Obtener_Respuesta(){
 		if (hash.find(std::get<RECURSO>(datos_petitorio)) == hash.end()){
 			respuesta="HTTP 404 NOT FOUND\n\n";
 		}else{
-			respuesta="Get de recurso";
-			hash[std::get<RECURSO>(datos_petitorio)];
+			respuesta="HTTP/1.1 200 OK\n\n";
+			respuesta.append(hash[std::get<RECURSO>(datos_petitorio)]);
 		}
 	}
 	return respuesta;
