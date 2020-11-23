@@ -1,7 +1,0 @@
-GET /test HTTP/1.1
-User-Agent: Wget/1.20.3 (linux-gnu)
-Accept: */*
-Accept-Encoding: identity
-Host: localhost:8088
-Content-Length: 90
-Connection: Keep-Alive

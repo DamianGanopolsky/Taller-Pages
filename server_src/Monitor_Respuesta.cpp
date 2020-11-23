@@ -11,7 +11,6 @@
 void Monitor_Respuesta::Respuesta_Servidor(const std::tuple<std::string,\
 		std::string,std::string>petitorio,std::string& respuesta_al_cliente){
 	std::unique_lock<std::mutex> lock(m);
-	sleep(10);
 	if (std::get<COMANDO>(petitorio).compare("GET")==0){
 		Comando_Get comando_get(petitorio,protected_hash);
 		respuesta_al_cliente=comando_get.Obtener_Respuesta();
