@@ -1,5 +1,7 @@
 # Trabajo Practico 3: Taller-Pages
 
+## Agregue una breve lista de cambios hechos para la reentrega al final del informe
+
 *Nombre*: Damian Ganopolsky  
 *Padrón*: 101.168  
 *Repositorio*: https://github.com/DamianGanopolsky/Taller-Pages
