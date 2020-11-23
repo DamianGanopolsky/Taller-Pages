@@ -40,7 +40,7 @@ Adjunto el diagrama de secuencia correspondiente a las acciones que se realizan 
 
 ### Cambios hechos en la Re-Entrega
 
-- Issue #1 : Agregue un diagrama de secuencias mostrando lo que sucede cuando se ingresa una 'q'.
+- Issue #1 : Agregue un diagrama de secuencia mostrando lo que sucede cuando se ingresa una 'q'.
 
 - Issue #2: No me lo retorna, segui la documentacion en http://www.cplusplus.com/reference/istream/istream/read/ y obtuve los caracteres leidos llamando a gcount.
 
@@ -50,11 +50,11 @@ Adjunto el diagrama de secuencia correspondiente a las acciones que se realizan 
 
 - Issue #5: Cambio "Asign" por "Assign"
 
-- Issue #6: Elimino el metodo innecesario longitud_archivo
+- Issue #6: Elimino el metodo innecesario "longitud_archivo"
 
-- Issue #7: Dejo de usar el heap para el manejo del archivo, uso el stack
+- Issue #7: Dejo de usar el heap para el manejo del archivo, ahora uso el stack(era injustificado el uso del heap en este caso)
 
-- Issue #8: Seteo las ai_flags a passive
+- Issue #8: Seteo ai_flags a passive
 
 - Issue #9: Uso excepciones en Socket.cpp en vez de fprintfs
 
